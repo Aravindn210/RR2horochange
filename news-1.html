@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immersive Brand Experiences | RR2Global News</title>
+    <meta name="description"
+        content="RR2Global News - How we are using light and tech to redefine exhibition storytelling.">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+</head>
+
+<body>
+
+    <div data-include="navbar.html"></div>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="header-overlay"></div>
+        <div class="container text-center text-white">
+            <span class="badge bg-primary mb-3">FEB 2026</span>
+            <h1 class="display-1 fw-bold">Immersive Brand <span class="text-gradient-hero">Experiences</span></h1>
+            <p class="lead mt-3">Redefining Exhibition Storytelling</p>
+        </div>
+    </header>
+
+    <!-- Detail Section -->
+    <section class="py-5">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-8 mx-auto" data-aos="fade-up">
+                    <img src="assets/news_1.jpg" alt="Immersive Exhibition"
+                        class="img-fluid rounded-5 shadow-lg mb-5 w-100">
+
+                    <h2 class="display-4 fw-bold mb-4">The Future of Brand Storytelling</h2>
+                    <p class="lead text-white mb-4">Innovation in the exhibition space is no longer just about building
+                        a physical structure. It's about creating an emotional connection through immersion.</p>
+
+                    <p>At RR2Global, we are pushing the boundaries of what's possible in a 6x6 meter space. By
+                        integrating advanced lighting systems, transparent OLED displays, and spatial audio, we
+                        transform static booths into living, breathing brand narratives.</p>
+
+                    <p>Our recent projects in the Middle East have shown that visitors spend 40% more time in
+                        environments that utilize sensory design. It's not just about what they see—it's about how they
+                        feel when they step inside. From kinetic sculptures that respond to movement to aromatic
+                        branding that evokes memory, every detail is engineered to leave a lasting impact.</p>
+
+                    <blockquote class="my-5 p-4 border-start border-primary border-4 bg-glass-bg rounded-3">
+                        <p class="h4 italic mb-0">"Design is not just what it looks like and feels like. Design is how
+                            it works and how it tells your unique story."</p>
+                    </blockquote>
+
+                    <p>Moving forward into 2026, our focus remains on 'Digital Craftsmanship'—the intersection of
+                        high-end physical builds and cutting-edge digital interaction. We are proud to lead the way in
+                        redefining the global exhibition landscape.</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="news.html" class="btn btn-outline-light rounded-pill px-5">BACK TO NEWS</a>
+            </div>
+        </div>
+    </section>
+
+    <div data-include="footer.html"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/include-partials.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true, offset: 100 });
+        window.addEventListener('scroll', function () {
+            const nav = document.querySelector('.navbar');
+            if (nav) {
+                if (window.scrollY > 50) nav.classList.add('navbar-scrolled');
+                else nav.classList.remove('navbar-scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>

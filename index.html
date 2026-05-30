@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RR2Global | WE DON'T DO ORDINARY</title>
+    <meta name="description"
+        content="RR2Global - We don't do ordinary. Premium event solutions, exhibitions, and interior design. Experience extraordinary events tailored to your needs.">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/overlay_updates.css">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <!-- Critical Preloader Style to prevent white flash -->
+    <!-- Critical Preloader Style to prevent white flash -->
+    <style>
+        html {
+            background-color: #000;
+        }
+
+        body.loading {
+            background-color: #000 !important;
+            overflow: hidden;
+            opacity: 1 !important;
+            /* Force visible */
+        }
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999999;
+            /* Max z-index */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .preloader-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 163, 136, 0.15) 0%, transparent 60%), #000;
+        }
+
+        /* Force responsive location-cycler positioning inside the top-right of the video */
+        @media (max-width: 991px) {
+            .location-cycler {
+                position: absolute !important;
+                top: 30px !important;
+                right: 20px !important;
+                left: auto !important;
+                width: auto !important;
+                z-index: 100 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                display: flex !important;
+                justify-content: flex-end !important;
+                align-items: center !important;
+            }
+
+            .loc-main {
+                justify-content: flex-end !important;
+                font-size: 1.1rem !important;
+                display: flex !important;
+                align-items: center !important;
+                gap: 8px !important;
+            }
+
+            .active-loc-wrapper {
+                min-width: auto !important;
+                text-align: right !important;
+            }
+
+            #activeLocation {
+                text-align: right !important;
+                display: inline-block !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="index-page loading">
+    <!-- Ultra-Modern Preloader -->
+    <div id="preloader">
+        <div class="preloader-bg"></div>
+        <div class="loader-wrapper">
+            <div class="morphing-blob"></div>
+            <div class="loader-logo-container w-100 px-4 text-center">
+                <img src="assets/we%20dont%20do%20ordinary-01.png" alt="WE DON'T DO ORDINARY" class="loader-wow-img">
+            </div>
+        </div>
+    </div>
+    <div data-include="navbar.html"></div>
+    <!-- Location Cycler Fixed Under Navbar -->
+    <section id="home" class="hero-v2">
+        <div class="hero-v2-main-container">
+            <div class="hero-v2-content" data-aos="fade-right">
+                <!-- <h1 class="hero-v2-title">We don't do<br>ordinary~</h1> -->
+            </div>
+
+            <!-- Left Reels Carousel -->
+            <div class="hero-reels-container left-reels" data-aos="fade-right" data-aos-delay="500">
+                <div class="hero-reels-viewport" id="leftReelsViewport">
+                    <div class="hero-reels-track" id="leftReelsTrack">
+                        <div class="hero-reel-thumbnail" data-video-src="assets/newreel/IMG_6369.MP4">
+                            <video src="assets/newreel/IMG_6369.MP4" autoplay muted loop playsinline></video>
+                            <div class="reel-play-indicator"><i class="fa-solid fa-play"></i></div>
+                        </div>
+                        <div class="hero-reel-thumbnail" data-video-src="assets/newreel/IMG_6370.MP4">
+                            <video src="assets/newreel/IMG_6370.MP4" autoplay muted loop playsinline></video>
+                            <div class="reel-play-indicator"><i class="fa-solid fa-play"></i></div>
+                        </div>
+                        <div class="hero-reel-thumbnail" data-video-src="assets/newreel/IMG_6371.MP4">
+                            <video src="assets/newreel/IMG_6371.MP4" autoplay muted loop playsinline></video>
+                            <div class="reel-play-indicator"><i class="fa-solid fa-play"></i></div>
+                        </div>
+                        <div class="hero-reel-thumbnail" data-video-src="assets/newreel/IMG_6372.MP4">
+                            <video src="assets/newreel/IMG_6372.MP4" autoplay muted loop playsinline></video>
+                            <div class="reel-play-indicator"><i class="fa-solid fa-play"></i></div>
+                        </div>
+                        <div class="hero-reel-thumbnail" data-video-src="assets/newreel/IMG_6373.MP4">
+                            <video src="assets/newreel/IMG_6373.MP4" autoplay muted loop playsinline></video>
+                            <div class="reel-play-indicator"><i class="fa-solid fa-play"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Reels Carousel -->
+            <div class="hero-reels-container right-reels" data-aos="fade-left" data-aos-delay="500">
+                <div class="hero-reels-viewport" id="rightReelsViewport">
+                    <div class="hero-reels-track" id="rightReelsTrack">
+                        <div class="hero-reel-thumbnail" data-video-src="assets/newreel/IMG_6373.MP4">
+                            <video src="assets/newreel/IMG_6373.MP4" autoplay muted loop playsinline></video>
+                            <div class="reel-play-indicator"><i class="fa-solid fa-play"></i></div>
+                        </div>
+                        <div class="hero-reel-thumbnail" data-video-src="assets/newreel/IMG_6372.MP4">
+                            <video src="assets/newreel/IMG_6372.MP4" autoplay muted loop playsinline></video>
+                            <div class="reel-play-indicator"><i class="fa-solid fa-play"></i></div>
+                        </div>
+                        <div class="hero-reel-thumbnail" data-video-src="assets/newreel/IMG_6371.MP4">
+                            <video src="assets/newreel/IMG_6371.MP4" autoplay muted loop playsinline></video>
+                            <div class="reel-play-indicator"><i class="fa-solid fa-play"></i></div>
+                        </div>
+                        <div class="hero-reel-thumbnail" data-video-src="assets/newreel/IMG_6370.MP4">
+                            <video src="assets/newreel/IMG_6370.MP4" autoplay muted loop playsinline></video>
+                            <div class="reel-play-indicator"><i class="fa-solid fa-play"></i></div>
+                        </div>
+                        <div class="hero-reel-thumbnail" data-video-src="assets/newreel/IMG_6369.MP4">
+                            <video src="assets/newreel/IMG_6369.MP4" autoplay muted loop playsinline></video>
+                            <div class="reel-play-indicator"><i class="fa-solid fa-play"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-v2-visual">
+                <!-- Location Cycler moved here (before video for mobile/tablet alignment) -->
+                <div class="location-cycler" data-aos="fade-left" data-aos-delay="800">
+                    <div class="loc-main">
+                        <i class="fa-solid fa-globe"></i>
+                        <div class="active-loc-wrapper">
+                            <span id="activeLocation">Dubai</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-v2-visual-inner">
+                    <div class="hero-v2-video-container" data-aos="zoom-in" data-aos-delay="300">
+                        <video autoplay muted loop playsinline id="heroVideo">
+                            <source src="assets/IMG_6245.MOV" type="video/mp4">
+                        </video>
+                        <video id="reelActiveVideo" loop playsinline style="display: none;"></video>
+                        <div class="video-overlay"></div>
+                        <button id="soundToggle" class="sound-toggle-btn" aria-label="Toggle Sound">
+                            <i class="fa-solid fa-volume-xmark"></i>
+                        </button>
+                        <button id="closeReelBtn" class="close-reel-btn" aria-label="Close Reel">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <!-- Overlapping Images (Now relative to visual-inner) -->
+                    <img src="assets/we%20dont-2.png" class="video-overlay-img top-left" alt="We don't do ordinary">
+                    <img src="assets/neither%20should%20you.PNG" class="video-overlay-img bottom-right"
+                        alt="Neither should you">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Driven by Creativity Section -->
+    <section class="driven-creativity-section">
+        <div class="container-fluid px-0">
+            <div class="driven-grid">
+                <div class="driven-left" data-aos="fade-up">
+                    <h2 class="driven-title">Driven by creativity</h2>
+                </div>
+                <div class="driven-right" data-aos="fade-up" data-aos-delay="200">
+                    <div class="driven-content">
+                        <p class="mb-2">We are a group of young <span class="highlight">creatives & aspirants</span> who
+                            want to</p>
+                        <p><span class="highlight">change the world through creativity.</span></p>
+
+                        <p class="mt-4"><span class="highlight-brand">RR2 Global®</span> is a Dubai-based creative
+                            agency turning
+                            ideas into impactful spaces. From
+                            branding to 3D, fit-outs to builds—we deliver standout solutions across the GCC with
+                            creativity, expertise, and seamless execution.</p>
+                        <a href="about.html" class="btn-pill-quote mt-4">About Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Home News Section (Added per request) -->
+    <section id="news" class="highlights-section py-5 bg-black">
+        <div class="container py-5">
+            <div class="section-header text-center mb-5" data-aos="fade-up">
+                <h2 class="display-4 fw-bold text-white">Latest News</h2>
+                <div class="title-underline mx-auto title-underline-aqua"></div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                    <a href="news-1.html" class="text-decoration-none">
+                        <div class="highlight-card">
+                            <div class="card-img-wrapper">
+                                <img src="assets/RR2.photos/20250612_161945(1).jpg" alt="Immersive Exhibition">
+                            </div>
+                            <div class="card-body-custom">
+                                <span class="date text-aqua">FEB 2026</span>
+                                <h4 class="text-white">Immersive Brand Experiences</h4>
+                                <p class="text-white opacity-75">How we are using light and tech to redefine exhibition
+                                    storytelling.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                    <a href="news-2.html" class="text-decoration-none">
+                        <div class="highlight-card">
+                            <div class="card-img-wrapper">
+                                <img src="assets/RR2.photos/20250612_162347(1)(1).jpg" alt="Global Connectivity">
+                            </div>
+                            <div class="card-body-custom">
+                                <span class="date text-aqua">JAN 2026</span>
+                                <h4 class="text-white">World-Class Design Scale</h4>
+                                <p class="text-white opacity-75">Expanding our footprint across continents with iconic
+                                    exhibition structures.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                    <a href="news-3.html" class="text-decoration-none">
+                        <div class="highlight-card">
+                            <div class="card-img-wrapper">
+                                <img src="assets/RR2.photos/20250612_162449(1).jpg" alt="Global Event Excellence">
+                            </div>
+                            <div class="card-body-custom">
+                                <span class="date text-aqua">DEC 2025</span>
+                                <h4 class="text-white">Global Event Excellence</h4>
+                                <p class="text-white opacity-75">Taking RR2Global to the international stage with
+                                    award-winning designs.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="news.html" class="btn-pill-quote px-5">View All News</a>
+            </div>
+            <!-- Ultra-Minimal Subscribe Section -->
+            <div class="newsletter-minimal mx-auto mt-5 text-center" data-aos="fade-up">
+                <div class="mb-3">
+                    <p class="text-white mb-0 fw-bold text-uppercase h5">
+                        Ordinary updates? Not here
+                    </p>
+                    <p class="text-white mb-0 h5">
+                        Subscribe to our newsletter
+                    </p>
+                </div>
+                <form class="d-flex align-items-center justify-content-center">
+                    <div class="input-group-minimal">
+                        <input type="email" class="minimal-input" placeholder="Enter your email address">
+                        <button type="submit" class="minimal-submit">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Vertical Services Section -->
+    <section id="services" class="v-services-section">
+        <!-- Scrolling Marquee Background -->
+        <div class="services-marquee">
+            <div class="marquee-content">
+                <span>We deliver exceptional event experiences...</span>
+                <span>We deliver exceptional event experiences...</span>
+                <span>We deliver exceptional event experiences...</span>
+            </div>
+        </div>
+        <div class="container-fluid px-0">
+            <div class="v-services-grid">
+                <div class="v-services-left">
+                    <ul class="v-services-list">
+                        <li class="v-service-item" data-service="events"
+                            data-marquee="We deliver exceptional event experiences...">Events</li>
+                        <li class="v-service-item" data-service="exhibition"
+                            data-marquee="Creative exhibition designs that stand out...">Exhibition</li>
+                        <li class="v-service-item" data-service="branding"
+                            data-marquee="Building unique and powerful brand identities...">Branding</li>
+                        <li class="v-service-item" data-service="design"
+                            data-marquee="Modern and functional design solutions...">Design</li>
+                    </ul>
+                </div>
+                <div class="v-services-right">
+                    <div class="v-service-display">
+                        <!-- Events Card -->
+                        <div class="v-service-card" id="service-events">
+                            <div class="v-card-inner">
+                                <div class="v-service-img-container" data-text="EVENTS">
+                                    <img src="assets/RR2.photos/20250612_205732(1).jpg" alt="Events"
+                                        class="v-service-img">
+                                </div>
+                                <div class="v-card-info">
+                                    <p class="v-service-desc">When the mouse pointer hovers over a service in the list,
+                                        a project image related to that scope will appear. A short description of the
+                                        selected service will also be displayed, with the text continually scrolling
+                                        from right to left.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Exhibition Card -->
+                        <div class="v-service-card" id="service-exhibition">
+                            <div class="v-card-inner">
+                                <div class="v-service-img-container" data-text="EXHIBITION">
+                                    <img src="assets/RR2.photos/20250612_205924(1)(1)(1).jpg" alt="Exhibition"
+                                        class="v-service-img">
+                                </div>
+                                <div class="v-card-info">
+                                    <p class="v-service-desc">Transforming spaces into immersive exhibition journeys
+                                        that showcase your brand story with precision and creative flair.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Branding Card -->
+                        <div class="v-service-card" id="service-branding">
+                            <div class="v-card-inner">
+                                <div class="v-service-img-container" data-text="BRANDING">
+                                    <img src="assets/RR2.photos/20250612_210005(1)(1).jpg" alt="Branding"
+                                        class="v-service-img">
+                                </div>
+                                <div class="v-card-info">
+                                    <p class="v-service-desc">Crafting unique brand identities that cut through the
+                                        noise and build meaningful connections with your target audience.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Design Card -->
+                        <div class="v-service-card" id="service-design">
+                            <div class="v-card-inner">
+                                <div class="v-service-img-container" data-text="DESIGN">
+                                    <img src="assets/RR2.photos/20250612_210247.jpg" alt="Design" class="v-service-img">
+                                </div>
+                                <div class="v-card-info">
+                                    <p class="v-service-desc">Expert design solutions that blend aesthetics with
+                                        functionality to create world-class environments and impactful brand visuals.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Centered Bottom Button -->
+            <div class="text-center mt-5">
+                <a href="services.html" class="btn-pill-quote px-5">Our Services</a>
+            </div>
+        </div>
+    </section>
+    <!-- Selected Works Section -->
+    <section id="work" class="index-work-section">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-up">
+                <h2 class="display-4 fw-bold text-white">Impact We've Made</h2>
+                <div class="title-underline mx-auto title-underline-aqua"></div>
+                <p class="text-white opacity-75 mt-3">A glimpse into the extraordinary spaces and experiences we create.
+                </p>
+            </div>
+            <div class="work-minimal-grid">
+                <div class="work-minimal-item" data-aos="fade-up">
+                    <a href="project-batman.html" class="text-decoration-none">
+                        <div class="work-minimal-image">
+                            <img src="assets/RR2.photos/BATMAN/14.png" alt="Batman Brand Activation">
+                            <div class="work-minimal-overlay">
+                                <span class="work-num">01</span>
+                                <div class="work-minimal-info">
+                                    <h3>Batman - Abu Dhabi International Bookfair</h3>
+                                    <p>Brand Activation (ADNEC)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="work-minimal-item" data-aos="fade-up" data-aos-delay="200">
+                    <a href="project-transformers.html" class="text-decoration-none">
+                        <div class="work-minimal-image">
+                            <img src="assets/RR2.photos/transformers/1.jpg" alt="Transformers Cybertron Hub">
+                            <div class="work-minimal-overlay">
+                                <span class="work-num">02</span>
+                                <div class="work-minimal-info">
+                                    <h3>Transformers Cybertron Hub</h3>
+                                    <p>Brand Experience</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="work-minimal-item" data-aos="fade-up" data-aos-delay="400">
+                    <a href="project-booch.html" class="text-decoration-none">
+                        <div class="work-minimal-image">
+                            <img src="assets/RR2.photos/BOOCH/11.png" alt="Booch Branding & Stand">
+                            <div class="work-minimal-overlay">
+                                <span class="work-num">03</span>
+                                <div class="work-minimal-info">
+                                    <h3>The Ripe Market, Academy Park</h3>
+                                    <p>Booch Pop-up Booth</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="works.html" class="btn-pill-quote px-5">View All Projects</a>
+            </div>
+        </div>
+    </section>
+    <!-- Our Team Section (From Sketch) -->
+    <section id="team" class="team-section text-white"
+        style="background: url('assets/SITE TEMPLATE.png') center/cover no-repeat !important; padding: 180px 0 100px 0 !important;">
+        <div class="container-fluid px-0">
+            <div class="section-header text-center mb-4" data-aos="fade-up">
+                <h2 class="display-4 fw-bold">Our Team</h2>
+                <div class="title-underline mx-auto title-underline-aqua"></div>
+            </div>
+            <div class="team-carousel-wrapper" data-aos="fade-up">
+                <div class="carousel-arrow prev" id="teamPrev"><i class="fa-solid fa-chevron-left"></i></div>
+                <div class="carousel-arrow next" id="teamNext"><i class="fa-solid fa-chevron-right"></i></div>
+                <div class="team-carousel-track" id="teamTrack">
+                    <div class="team-member-card">
+                        <div class="team-member-inner">
+                            <div class="team-img-wrapper" data-text="ANN"><img src="assets/team/1.png" alt="ANN">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member-card">
+                        <div class="team-member-inner">
+                            <div class="team-img-wrapper" data-text="CJ"><img src="assets/team/2.png" alt="CJ"></div>
+                        </div>
+                    </div>
+                    <div class="team-member-card">
+                        <div class="team-member-inner">
+                            <div class="team-img-wrapper" data-text="DOLLY"><img src="assets/team/3.png" alt="DOLLY">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member-card">
+                        <div class="team-member-inner">
+                            <div class="team-img-wrapper" data-text="LUIS"><img src="assets/team/4.png" alt="LUIS">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member-card">
+                        <div class="team-member-inner">
+                            <div class="team-img-wrapper" data-text="MACK"><img src="assets/team/5.png" alt="MACK">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member-card">
+                        <div class="team-member-inner">
+                            <div class="team-img-wrapper" data-text="MAHAVIR"><img src="assets/team/6.png"
+                                    alt="MAHAVIR"></div>
+                        </div>
+                    </div>
+                    <div class="team-member-card">
+                        <div class="team-member-inner">
+                            <div class="team-img-wrapper" data-text="RYAN"><img src="assets/team/11.png" alt="RYAN">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member-card">
+                        <div class="team-member-inner">
+                            <div class="team-img-wrapper" data-text="MAJ"><img src="assets/team/7.png" alt="MAJ">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member-card">
+                        <div class="team-member-inner">
+                            <div class="team-img-wrapper" data-text="RAJNESH"><img src="assets/team/8.png"
+                                    alt="RAJNESH"></div>
+                        </div>
+                    </div>
+                    <div class="team-member-card">
+                        <div class="team-member-inner">
+                            <div class="team-img-wrapper" data-text="RAVIND"><img src="assets/team/9.png" alt="RAVIND">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member-card">
+                        <div class="team-member-inner">
+                            <div class="team-img-wrapper" data-text="ROHIT"><img src="assets/team/10.png" alt="ROHIT">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member-card">
+                        <div class="team-member-inner">
+                            <div class="team-img-wrapper" data-text="SHABI"><img src="assets/team/12.png" alt="SHABI">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>x
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const track = document.getElementById('teamTrack');
+            const prevBtn = document.getElementById('teamPrev');
+            const nextBtn = document.getElementById('teamNext');
+            const baseStep = 0.7;
+            let step = baseStep;
+            let isHovered = false;
+
+            // Clone elements for infinite scroll
+            const cards = Array.from(track.children);
+            cards.forEach(card => {
+                const clone = card.cloneNode(true);
+                track.appendChild(clone);
+            });
+
+            // Dynamic limit calculation to prevent jitter/jumps
+            let scrollLimit = 0;
+            function updateTeamLimits() {
+                const style = window.getComputedStyle(track);
+                const gap = parseFloat(style.gap) || 0;
+                const firstCard = track.firstElementChild;
+                const cardW = firstCard ? firstCard.offsetWidth : 380;
+                const N = cards.length; // original cards count
+                scrollLimit = N * (cardW + gap);
+            }
+            // Initial call after a brief timeout to ensure layout is complete
+            setTimeout(updateTeamLimits, 500);
+            window.addEventListener('resize', updateTeamLimits);
+
+            function autoScroll() {
+                if (!isHovered && scrollLimit > 0) {
+                    track.scrollLeft += step;
+                    if (track.scrollLeft >= scrollLimit) {
+                        track.scrollLeft = 0;
+                    } else if (track.scrollLeft <= 0) {
+                        track.scrollLeft = scrollLimit;
+                    }
+                }
+                requestAnimationFrame(autoScroll);
+            }
+            autoScroll();
+            // Pause on track hover
+            track.addEventListener('mouseenter', () => isHovered = true);
+            track.addEventListener('mouseleave', () => isHovered = false);
+
+            // Arrow interactions
+            prevBtn.addEventListener('mouseenter', () => {
+                isHovered = false; // Force movement
+                step = -4; // Speed up left
+            });
+            prevBtn.addEventListener('mouseleave', () => {
+                step = baseStep;
+            });
+
+            nextBtn.addEventListener('mouseenter', () => {
+                isHovered = false; // Force movement
+                step = 4; // Speed up right
+            });
+            nextBtn.addEventListener('mouseleave', () => {
+                step = baseStep;
+            });
+        });
+    </script>
+    <!-- Floating Action Buttons Handled in Top Hero Section for Global Visibility -->
+    <!-- Contact & Footer (From Sketch) -->
+    <div data-include="footer.html"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/include-partials.js"></script>
+    <script>
+        // Sound Toggle & Interactive Reels Carousel Controller
+        document.addEventListener('DOMContentLoaded', function () {
+            const mainVideo = document.getElementById('heroVideo');
+            const reelVideo = document.getElementById('reelActiveVideo');
+            const soundBtn = document.getElementById('soundToggle');
+            const closeReelBtn = document.getElementById('closeReelBtn');
+            const reelThumbnails = document.querySelectorAll('.hero-reel-thumbnail');
+
+            if (!mainVideo || !soundBtn) return;
+
+            // Flag to track whether the audio system is unmuted
+            let isAudioEnabled = false;
+
+            // Update sound button UI based on current mute state
+            function updateSoundButtonUI(isMuted) {
+                if (isMuted) {
+                    soundBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+                    soundBtn.classList.remove('sound-on');
+                    soundBtn.setAttribute('aria-label', 'Unmute');
+                } else {
+                    soundBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+                    soundBtn.classList.add('sound-on');
+                    soundBtn.setAttribute('aria-label', 'Mute');
+                }
+            }
+
+            // Sound Button Click Handler
+            soundBtn.addEventListener('click', function (e) {
+                e.stopPropagation(); // Avoid triggering parent container click triggers
+                const activeVideo = (reelVideo && reelVideo.style.display !== 'none') ? reelVideo : mainVideo;
+
+                isAudioEnabled = activeVideo.muted; // Toggle based on active video state
+
+                // Set states
+                mainVideo.muted = !isAudioEnabled;
+                if (reelVideo) {
+                    reelVideo.muted = !isAudioEnabled;
+                }
+
+                if (isAudioEnabled) {
+                    activeVideo.play().catch(() => {
+                        mainVideo.muted = true;
+                        if (reelVideo) reelVideo.muted = true;
+                        isAudioEnabled = false;
+                        updateSoundButtonUI(true);
+                    });
+                }
+
+                updateSoundButtonUI(!isAudioEnabled);
+            });
+
+            // Carousel Auto-scroll variables
+            const leftTrack = document.getElementById('leftReelsTrack');
+            const rightTrack = document.getElementById('rightReelsTrack');
+
+            let leftOffset = 0;
+            let rightOffset = 0;
+            let leftHovered = false;
+            let rightHovered = false;
+            let reelActive = false;
+
+            // Clone thumbnails for infinite loop
+            function initClones(track) {
+                const items = Array.from(track.children);
+                items.forEach(item => {
+                    const clone = item.cloneNode(true);
+                    clone.addEventListener('click', onReelClick);
+                    track.appendChild(clone);
+                });
+            }
+            // Reels Click Handler
+            function onReelClick(e) {
+                e.stopPropagation();
+                const videoSrc = this.getAttribute('data-video-src');
+                if (!videoSrc) return;
+
+                // Stop any other active reels
+                document.querySelectorAll('.hero-reel-thumbnail').forEach(t => t.classList.remove('active-reel'));
+                // Highlight clicked thumbnail across both columns/clones
+                document.querySelectorAll(`.hero-reel-thumbnail[data-video-src="${videoSrc}"]`).forEach(t => {
+                    t.classList.add('active-reel');
+                });
+
+                // Pause and hide main video
+                mainVideo.pause();
+                mainVideo.style.display = 'none';
+
+                // Set reel video source and show it
+                reelVideo.src = videoSrc;
+                reelVideo.style.display = 'block';
+                reelVideo.load();
+
+                isAudioEnabled = true;
+                reelVideo.muted = false;
+                updateSoundButtonUI(false);
+
+                reelVideo.play().catch(err => {
+                    console.log("Autoplay with sound prevented, playing muted:", err);
+                    reelVideo.muted = true;
+                    isAudioEnabled = false;
+                    updateSoundButtonUI(true);
+                });
+
+                if (closeReelBtn) {
+                    closeReelBtn.classList.add('show');
+                }
+
+                reelActive = true;
+            }
+
+            if (leftTrack && rightTrack) {
+                // Initialize clones
+                initClones(leftTrack);
+                initClones(rightTrack);
+                // Add event listeners to original items
+                leftTrack.querySelectorAll('.hero-reel-thumbnail').forEach(t => t.addEventListener('click', onReelClick));
+                rightTrack.querySelectorAll('.hero-reel-thumbnail').forEach(t => t.addEventListener('click', onReelClick));
+                // Hover states
+                leftTrack.addEventListener('mouseenter', () => leftHovered = true);
+                leftTrack.addEventListener('mouseleave', () => leftHovered = false);
+                rightTrack.addEventListener('mouseenter', () => rightHovered = true);
+                rightTrack.addEventListener('mouseleave', () => rightHovered = false);
+                // Recalculate dimensions on resize/load
+                let leftLimit = leftTrack.scrollHeight / 2;
+                let rightLimit = rightTrack.scrollHeight / 2;
+                function updateLimits() {
+                    const isMobile = window.innerWidth < 992;
+                    const leftFirst = leftTrack.firstElementChild;
+                    const rightFirst = rightTrack.firstElementChild;
+                    const leftStyle = window.getComputedStyle(leftTrack);
+                    const rightStyle = window.getComputedStyle(rightTrack);
+                    const leftGap = parseFloat(leftStyle.gap) || 0;
+                    const rightGap = parseFloat(rightStyle.gap) || 0;
+                    const leftN = leftTrack.children.length / 2;
+                    const rightN = rightTrack.children.length / 2;
+
+                    if (isMobile) {
+                        const leftWidth = leftFirst ? leftFirst.offsetWidth : 80;
+                        const rightWidth = rightFirst ? rightFirst.offsetWidth : 80;
+                        leftLimit = leftN * (leftWidth + leftGap);
+                        rightLimit = rightN * (rightWidth + rightGap);
+                    } else {
+                        const leftHeight = leftFirst ? leftFirst.offsetHeight : 284;
+                        const rightHeight = rightFirst ? rightFirst.offsetHeight : 284;
+                        leftLimit = leftN * (leftHeight + leftGap);
+                        rightLimit = rightN * (rightHeight + rightGap);
+                    }
+                }
+                window.addEventListener('resize', updateLimits);
+                window.addEventListener('load', updateLimits);
+                // Initial limits helper
+                setTimeout(updateLimits, 500);
+                // Scroll Animation loop
+                function animateCarousels() {
+                    if (!reelActive) {
+                        const isMobile = window.innerWidth < 992;
+                        // Left Carousel scrolling (Down on desktop, Left on mobile)
+                        if (!leftHovered) {
+                            if (isMobile) {
+                                leftOffset += 0.6;
+                                if (leftOffset >= leftLimit) {
+                                    leftOffset = 0;
+                                }
+                                leftTrack.style.transform = `translateX(${-leftOffset}px)`;
+                            } else {
+                                leftOffset -= 0.6;
+                                if (leftOffset <= 0) {
+                                    leftOffset = leftLimit;
+                                }
+                                leftTrack.style.transform = `translateY(${-leftOffset}px)`;
+                            }
+                        }
+                        // Right Carousel scrolling (Up on desktop, Right on mobile)
+                        if (!rightHovered) {
+                            if (isMobile) {
+                                rightOffset -= 0.6;
+                                if (rightOffset <= 0) {
+                                    rightOffset = rightLimit;
+                                }
+                                rightTrack.style.transform = `translateX(${-rightOffset}px)`;
+                            } else {
+                                rightOffset += 0.6;
+                                if (rightOffset >= rightLimit) {
+                                    rightOffset = 0;
+                                }
+                                rightTrack.style.transform = `translateY(${-rightOffset}px)`;
+                            }
+                        }
+                    }
+                    requestAnimationFrame(animateCarousels);
+                }
+
+                // Start scrolling
+                animateCarousels();
+            }
+
+            // Close Reel Handler
+            if (closeReelBtn) {
+                closeReelBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+
+                    if (reelVideo) {
+                        reelVideo.pause();
+                        reelVideo.src = '';
+                        reelVideo.style.display = 'none';
+                    }
+
+                    // Reset thumbnails active state
+                    document.querySelectorAll('.hero-reel-thumbnail').forEach(t => t.classList.remove('active-reel'));
+
+                    // Show and play main video (looping back in background, muted by default)
+                    mainVideo.style.display = 'block';
+                    mainVideo.muted = true;
+                    isAudioEnabled = false;
+                    updateSoundButtonUI(true);
+                    mainVideo.play().catch(() => { });
+
+                    // Hide close button
+                    closeReelBtn.classList.remove('show');
+
+                    // Resume carousels
+                    reelActive = false;
+                });
+            }
+        });
+    </script>
+    <script>
+        AOS.init({
+            duration: 1200,
+            once: true,
+            offset: 100
+        });
+        // Preloader Logic (Fast)
+        document.addEventListener("DOMContentLoaded", function () {
+            const preloader = document.getElementById('preloader');
+
+            function removePreloader() {
+                if (preloader && !preloader.classList.contains('fade-out')) {
+                    preloader.classList.add('fade-out');
+                    setTimeout(() => {
+                        document.body.classList.remove('loading');
+                        preloader.style.display = 'none';
+                    }, 500); // Shorter fade transition
+                }
+            }
+            // Remove quickly
+            window.addEventListener('load', () => setTimeout(removePreloader, 100));
+            // Fallback
+            setTimeout(removePreloader, 1500);
+        });
+    </script>
+</body>
+
+</html>

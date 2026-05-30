@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RR2 Admin | Login</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --admin-bg: #000000;
+            --aqua-primary: #00D1B2;
+            --turquoise-primary: #00A388;
+            --card-glass: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --font-main: 'Outfit', sans-serif;
+        }
+
+        @font-face {
+            font-family: 'Eudoxus Sans';
+            src: url('../fonts/EudoxusSans-Regular.ttf') format('truetype');
+            font-weight: 400;
+        }
+
+        body {
+            background-color: var(--admin-bg);
+            color: #fff;
+            font-family: 'Eudoxus Sans', var(--font-main);
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Ambient Glows */
+        .login-glow-1 {
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 209, 178, 0.05) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(50px);
+        }
+
+        .login-glow-2 {
+            position: absolute;
+            bottom: -10%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 163, 136, 0.05) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(50px);
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 450px;
+            background: var(--card-glass);
+            border: 1px solid var(--card-border);
+            border-radius: 40px;
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            padding: 50px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+            animation: cardAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            z-index: 10;
+        }
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .login-logo {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .login-logo img {
+            height: 45px;
+            filter: drop-shadow(0 0 15px rgba(0, 209, 178, 0.4));
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .login-header h1 {
+            font-size: 2rem;
+            font-weight: 200;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #fff 30%, var(--aqua-primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .form-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .input-group-custom {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-group-custom i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            color: #fff;
+            padding: 16px 20px 16px 55px;
+            font-size: 0.95rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--aqua-primary);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(0, 209, 178, 0.1);
+            outline: none;
+        }
+
+        .form-control:focus+i {
+            color: var(--aqua-primary);
+        }
+
+        .btn-login {
+            background: var(--aqua-primary);
+            color: #000;
+            border: none;
+            width: 100%;
+            padding: 16px;
+            border-radius: 18px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 15px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+
+        .btn-login:hover {
+            background: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 209, 178, 0.3);
+        }
+
+        .login-footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .login-footer a {
+            color: var(--aqua-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .login-footer a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* Background Animated Particles (Subtle) */
+        .particles {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @media (max-width: 576px) {
+            .login-card {
+                padding: 35px 25px;
+                border-radius: 30px;
+                margin: 20px;
+            }
+
+            .login-header h1 {
+                font-size: 1.6rem;
+            }
+
+            .login-logo img {
+                height: 35px;
+            }
+
+            .form-control {
+                padding: 14px 18px 14px 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-glow-1"></div>
+    <div class="login-glow-2"></div>
+
+    <div class="login-card">
+        <div class="login-logo">
+            <img src="../assets/logo.png" alt="RR2Global">
+        </div>
+
+        <div class="login-header">
+            <h1>Admin <span class="text-gradient">Access</span></h1>
+            <p class="small opacity-50">Please enter your credentials to continue</p>
+        </div>
+
+        <form action="dashboard.html" onsubmit="return handleLogin(event)">
+            <div class="mb-4">
+                <label class="form-label">Username / Email</label>
+                <div class="input-group-custom">
+                    <input type="text" class="form-control" placeholder="admin_user" required>
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Secure Password</label>
+                <div class="input-group-custom">
+                    <input type="password" class="form-control" placeholder="••••••••" required>
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="rememberMe"
+                        style="background-color: transparent; border-color: var(--card-border);">
+                    <label class="form-check-label small opacity-50" for="rememberMe">
+                        Remember session
+                    </label>
+                </div>
+                <a href="#" class="small text-aqua">Forgot?</a>
+            </div>
+
+            <button type="submit" class="btn-login">Verify & Enter <i
+                    class="fa-solid fa-arrow-right-to-bracket ms-2"></i></button>
+        </form>
+
+        <div class="login-footer">
+            <p>&copy; 2026 RR2 Global&reg; System. <br> <a href="../index.html">Back to Main Website</a></p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function handleLogin(e) {
+            // This is just for demonstration as requested
+            // It will naturally redirect to dashboard.html due to form action
+            console.log("Login sequence initiated...");
+            return true;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design | RR2Global</title>
+    <meta name="description"
+        content="RR2Global - Expert design solutions blending aesthetics with functionality for world-class environments.">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+</head>
+
+<body>
+
+    <div data-include="navbar.html"></div>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="header-overlay"></div>
+        <div class="container text-center text-white">
+            <h1 class="display-1 fw-bold">OUR <span class="text-gradient-hero">DESIGN</span></h1>
+            <p class="lead mt-3">Modern & Functional Solutions</p>
+        </div>
+    </header>
+
+    <!-- Detail Section -->
+    <section class="py-5">
+        <div class="container py-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="display-4 fw-bold mb-4">Design Excellence</h2>
+                    <p class="lead text-muted mb-4">We provide expert design solutions that blend aesthetics with
+                        functionality to create world-class environments.</p>
+                    <p>Our design philosophy is rooted in minimalism, efficiency, and emotional resonance. Whether it's
+                        a physical space, a digital interface, or a brand's visual identity, we ensure that every
+                        element serves a purpose and contributes to a cohesive experience.</p>
+
+                    <ul class="list-unstyled mt-4 d-grid gap-3">
+                        <li class="d-flex align-items-center"><i
+                                class="fa-solid fa-circle-check text-primary me-3 fs-4"></i> <span><strong>Architectural
+                                    Design:</strong> 3D modeling and advanced spatial planning.</span></li>
+                        <li class="d-flex align-items-center"><i
+                                class="fa-solid fa-circle-check text-primary me-3 fs-4"></i> <span><strong>Visual
+                                    Identity:</strong> Brand visuals and digital assets that resonate.</span></li>
+                        <li class="d-flex align-items-center"><i
+                                class="fa-solid fa-circle-check text-primary me-3 fs-4"></i> <span><strong>Creative
+                                    Strategy:</strong> Innovative solutions for complex design challenges.</span></li>
+                    </ul>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="image-stack position-relative">
+                        <img src="assets/news_4.jpg" alt="Design Excellence" class="img-fluid rounded-5 shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Highlights -->
+    <section class="py-5">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="fw-bold">Design Showcases</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <a href="project-2.html" class="text-decoration-none text-white">
+                        <div class="work-item">
+                            <img src="assets/news_2.jpg" alt="Highlight 1" class="img-fluid rounded-4">
+                            <div class="work-overlay">
+                                <h4>Modern Visual Identity</h4>
+                                <p>Global Brands Hub</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="project-3.html" class="text-decoration-none text-white">
+                        <div class="work-item">
+                            <img src="assets/news_1.jpg" alt="Highlight 2" class="img-fluid rounded-4">
+                            <div class="work-overlay">
+                                <h4>Spatial Innovation</h4>
+                                <p>Exhibition Pavilions</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div data-include="footer.html"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/include-partials.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true, offset: 100 });
+        window.addEventListener('scroll', function () {
+            const nav = document.querySelector('.navbar');
+            if (nav) {
+                if (window.scrollY > 50) nav.classList.add('navbar-scrolled');
+                else nav.classList.remove('navbar-scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>

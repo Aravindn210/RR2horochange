@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Office Hub | Projects | RR2Global</title>
+    <meta name="description" content="RR2Global Projects - Modern Office Hub interior design and spatial planning.">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+</head>
+
+<body>
+
+    <div data-include="navbar.html"></div>
+
+    <!-- Project Header -->
+    <header class="page-header">
+        <div class="header-overlay"></div>
+        <div class="container text-center text-white">
+            <h1 class="display-1 fw-bold">BRAND <span class="text-gradient-hero">EXPERIENCE</span></h1>
+            <p class="lead mt-3">Immersive Exhibition Design</p>
+        </div>
+    </header>
+
+    <!-- Project Details -->
+    <section class="py-5">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <img src="assets/RR2.photos/20250612_133315(1).jpg"
+                        alt="Brand Experience" class="img-fluid rounded-5 shadow-lg mb-4 w-100">
+                    <h2 class="display-4 fw-bold mb-4">Project Overview</h2>
+                    <p class="lead text-white-50">Creating immersive brand environments that tell a story and engage audiences through innovative exhibition design.</p>
+                    <p>This project focused on transforming a standard exhibition space into a dynamic brand journey. RR2Global utilized a blend of physical structures and digital elements to create an interactive experience that resonated with visitors.</p>
+                    <p>Our approach integrated sleek architecture with custom branding, ensuring every touchpoint reflected the brand's identity. The result was a standout pavilion that successfully captured attention and drove significant engagement during the trade show.</p>
+                </div>
+                <div class="col-lg-4" data-aos="fade-left">
+                    <div class="bg-glass-card p-4 rounded-4 sticky-top"
+                        style="top: 100px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                        <h4 class="fw-bold mb-4 border-bottom border-primary pb-2">Project Brief</h4>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">
+                                <span class="text-muted small d-block uppercase tracking-wider">Client</span>
+                                <span class="fw-bold">Nexus Digital</span>
+                            </li>
+                            <li class="mb-3">
+                                <span class="text-muted small d-block uppercase tracking-wider">Category</span>
+                                <span class="fw-bold">Interior Design</span>
+                            </li>
+                            <li class="mb-3">
+                                <span class="text-muted small d-block uppercase tracking-wider">Location</span>
+                                <span class="fw-bold">Riyadh, KSA</span>
+                            </li>
+                            <li class="mb-3">
+                                <span class="text-muted small d-block uppercase tracking-wider">Completion</span>
+                                <span class="fw-bold">December 2024</span>
+                            </li>
+                        </ul>
+                        <div class="mt-4">
+                            <a href="works.html" class="btn btn-outline-light w-100 rounded-pill">BACK TO GALLERY</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Gallery -->
+    <section class="py-5 bg-black bg-opacity-50">
+        <div class="container">
+            <h3 class="fw-bold mb-5 text-center">Visual Highlights</h3>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="zoom-in">
+                    <img src="assets/RR2.photos/20250612_170137(1)(1).jpg" alt="Detail 1" class="img-fluid rounded-4">
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="assets/RR2.photos/20250612_184937(1)(1).jpg" alt="Detail 2" class="img-fluid rounded-4">
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="400">
+                    <img src="assets/RR2.photos/20250612_205253(1)(1).jpg" alt="Detail 3" class="img-fluid rounded-4">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div data-include="footer.html"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/include-partials.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true, offset: 100 });
+        window.addEventListener('scroll', function () {
+            const nav = document.querySelector('.navbar');
+            if (nav) {
+                if (window.scrollY > 50) nav.classList.add('navbar-scrolled');
+                else nav.classList.remove('navbar-scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>
