@@ -14,9 +14,171 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="assets/logo.png">
+    
+    <!-- Critical Preloader Style to prevent white flash -->
+    <style>
+        html {
+            background-color: #000;
+        }
+
+        body.loading {
+            background-color: #000 !important;
+            overflow: hidden;
+            opacity: 1 !important; /* Force visible */
+        }
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #020813;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999999;
+            overflow: hidden;
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s;
+        }
+
+        .preloader-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 162, 255, 0.12) 0%, transparent 60%), #020813;
+            z-index: 0;
+        }
+
+        .loader-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .glow-spot {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 162, 255, 0.2) 0%, transparent 70%);
+            filter: blur(50px);
+            opacity: 0.8;
+            z-index: 1;
+            animation: pulseGlow 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                transform: scale(0.85);
+                opacity: 0.6;
+            }
+            100% {
+                transform: scale(1.15);
+                opacity: 0.9;
+            }
+        }
+
+        .smurfy-logo-container {
+            position: relative;
+            z-index: 10;
+            width: 200px;
+            max-width: 70vw;
+            height: auto;
+            transform: scale(0.9);
+            animation: scaleIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes scaleIn {
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .smurfy-svg {
+            width: 100%;
+            height: auto;
+            overflow: visible;
+        }
+
+        .smurfy-path {
+            fill: rgba(0, 162, 255, 0);
+            stroke: #00a2ff;
+            stroke-width: 4px;
+            stroke-dasharray: 1200;
+            stroke-dashoffset: 1200;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: drop-shadow(0 0 8px rgba(0, 162, 255, 0.6));
+            animation: 
+                drawPath 1.6s cubic-bezier(0.25, 1, 0.5, 1) forwards,
+                fillSmurfColor 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.8s forwards,
+                smurfGlowPulse 2s ease-in-out 2s infinite alternate;
+        }
+
+        @keyframes drawPath {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes fillSmurfColor {
+            0% {
+                fill: rgba(0, 162, 255, 0);
+                stroke: #00a2ff;
+                filter: drop-shadow(0 0 8px rgba(0, 162, 255, 0.6));
+            }
+            100% {
+                fill: #00a2ff;
+                stroke: rgba(0, 162, 255, 0);
+                filter: drop-shadow(0 0 25px rgba(0, 162, 255, 0.9)) drop-shadow(0 0 50px rgba(0, 162, 255, 0.4));
+            }
+        }
+
+        @keyframes smurfGlowPulse {
+            0% {
+                filter: drop-shadow(0 0 20px rgba(0, 162, 255, 0.8)) drop-shadow(0 0 40px rgba(0, 162, 255, 0.3));
+                transform: scale(1);
+            }
+            100% {
+                filter: drop-shadow(0 0 35px rgba(0, 162, 255, 1)) drop-shadow(0 0 70px rgba(0, 162, 255, 0.6));
+                transform: scale(1.05);
+            }
+        }
+
+        /* Transition out states */
+        #preloader.fade-out {
+            opacity: 0;
+            pointer-events: none;
+            visibility: hidden;
+            transform: scale(1.05);
+        }
+
+        #preloader.fade-out .loader-wrapper {
+            opacity: 0;
+            transform: scale(0.85);
+            filter: blur(15px);
+        }
+    </style>
 </head>
 
-<body>
+<body class="loading">
+
+    <!-- Smurf Logo Preloader -->
+    <div id="preloader">
+        <div class="preloader-bg"></div>
+        <div class="loader-wrapper">
+            <div class="glow-spot"></div>
+            <div class="smurfy-logo-container">
+                <svg viewBox="0 0 200 200" class="smurfy-svg" xmlns="http://www.w3.org/2000/svg">
+                    <!-- A beautifully stylized abstract Smurf hat path -->
+                    <path class="smurfy-path" d="M 50,150 C 45,125 55,95 75,75 C 90,60 105,40 125,30 C 150,18 175,32 170,55 C 165,75 140,85 135,100 C 130,115 145,120 160,130 C 172,138 175,152 155,160 C 135,168 70,168 50,150 Z" />
+                </svg>
+            </div>
+        </div>
+    </div>
 
     <div data-include="navbar.html"></div>
 
@@ -117,6 +279,29 @@
                 else nav.classList.remove('navbar-scrolled');
             }
         });
+
+        // Smurfy Day Preloader Logic
+        const preloader = document.getElementById('preloader');
+        function removePreloader() {
+            if (preloader && !preloader.classList.contains('fade-out')) {
+                preloader.classList.add('fade-out');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                    document.body.classList.remove('loading');
+                }, 800); // matches the CSS transition time
+            }
+        }
+        
+        // Remove preloader when page is fully loaded, but enforce a minimum presentation time (2.0s)
+        const loadTime = Date.now();
+        window.addEventListener('load', () => {
+            const elapsed = Date.now() - loadTime;
+            const delay = Math.max(2000 - elapsed, 0); // Enforce 2.0s minimum presentation
+            setTimeout(removePreloader, delay);
+        });
+        
+        // Fallback in case window load event doesn't fire or takes too long
+        setTimeout(removePreloader, 3000);
     </script>
 </body>
 
