@@ -231,7 +231,14 @@
                 <div class="gold-dust"></div>
             </div>
             <div class="wedding-logo-container">
-                <img src="https://www.royal-wed.ru//static/img/weekend/day1.png" alt="Royal Wedding Logo" class="wedding-logo-img">
+                <img src="https://www.royal-wed.ru//static/img/weekend/day1.png" alt="Royal Wedding Logo" class="wedding-logo-img" onerror="this.style.display='none'; document.getElementById('wedding-logo-fallback').style.display='flex';">
+                <div id="wedding-logo-fallback" style="display: none; flex-direction: column; align-items: center; justify-content: center; gap: 15px;">
+                    <svg viewBox="0 0 24 24" width="50" height="50" fill="none" stroke="#D4AF37" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.6));">
+                        <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z"/>
+                        <path d="M3 20h18"/>
+                    </svg>
+                    <span style="font-family: 'Playfair Display', 'Didot', 'Georgia', serif; font-size: 1.5rem; font-weight: 300; color: #D4AF37; letter-spacing: 5px; text-transform: uppercase; text-shadow: 0 0 15px rgba(212, 175, 55, 0.4); white-space: nowrap;">ROYAL WEDDING</span>
+                </div>
             </div>
         </div>
     </div>
@@ -361,6 +368,18 @@
                     document.body.classList.remove('loading');
                 }, 800); // matches the CSS transition time
             }
+        }
+
+        // Image timeout fallback (1.5 seconds)
+        const logoImg = document.querySelector('.wedding-logo-img');
+        if (logoImg) {
+            setTimeout(() => {
+                if (!logoImg.complete || logoImg.naturalWidth === 0) {
+                    logoImg.style.display = 'none';
+                    const fallback = document.getElementById('wedding-logo-fallback');
+                    if (fallback) fallback.style.display = 'flex';
+                }
+            }, 1500);
         }
         
         // Remove preloader when page is fully loaded, but enforce a minimum presentation time (e.g. 1.2s)
