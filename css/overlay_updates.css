@@ -73,7 +73,7 @@
     .location-cycler {
         position: absolute !important;
         top: 30px !important;
-        right: 20px !important;
+        right: 25px !important;
         left: auto !important;
         width: auto !important;
         z-index: 100 !important;
@@ -100,6 +100,9 @@
     #activeLocation {
         text-align: right !important;
         display: inline-block !important;
+        font-weight: 300 !important;
+        text-transform: none !important;
+        letter-spacing: normal !important;
     }
 
     .close-reel-btn {
@@ -151,4 +154,25 @@
     background: transparent;
     border: none;
     color: #00D1B2;
+}
+
+@media (max-width: 576px) {
+    .location-cycler {
+        top: 20px !important;
+        right: 15px !important;
+    }
+    .loc-main {
+        font-size: 0.9rem !important;
+        gap: 5px !important;
+    }
+}
+
+@media (max-width: 375px) {
+    .location-cycler {
+        top: 15px !important;
+        right: 12px !important;
+    }
+    .loc-main {
+        font-size: 0.8rem !important;
+    }
 }

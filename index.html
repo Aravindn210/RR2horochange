@@ -51,12 +51,12 @@
             background: radial-gradient(circle at 50% 50%, rgba(0, 163, 136, 0.15) 0%, transparent 60%), #000;
         }
 
-        /* Force responsive location-cycler positioning inside the top-right of the video */
+        /* Responsive location-cycler positioning inside the top-right of the video */
         @media (max-width: 991px) {
             .location-cycler {
                 position: absolute !important;
                 top: 30px !important;
-                right: 20px !important;
+                right: 25px !important;
                 left: auto !important;
                 width: auto !important;
                 z-index: 100 !important;
@@ -83,6 +83,31 @@
             #activeLocation {
                 text-align: right !important;
                 display: inline-block !important;
+                font-weight: 300 !important;
+                text-transform: none !important;
+                letter-spacing: normal !important;
+            }
+        }
+
+        /* Scale down on smaller mobiles to prevent overlap with top-left overlay text */
+        @media (max-width: 576px) {
+            .location-cycler {
+                top: 20px !important;
+                right: 15px !important;
+            }
+            .loc-main {
+                font-size: 0.9rem !important;
+                gap: 5px !important;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .location-cycler {
+                top: 15px !important;
+                right: 12px !important;
+            }
+            .loc-main {
+                font-size: 0.8rem !important;
             }
         }
     </style>
@@ -333,7 +358,7 @@
                         <div class="v-service-card" id="service-events">
                             <div class="v-card-inner">
                                 <div class="v-service-img-container" data-text="EVENTS">
-                                    <img src="assets/RR2.photos/20250612_205732(1).jpg" alt="Events"
+                                    <img src="assets/RR2.photos/royal wedding/12.jpg" alt="Events"
                                         class="v-service-img">
                                 </div>
                                 <div class="v-card-info">
@@ -348,7 +373,7 @@
                         <div class="v-service-card" id="service-exhibition">
                             <div class="v-card-inner">
                                 <div class="v-service-img-container" data-text="EXHIBITION">
-                                    <img src="assets/RR2.photos/20250612_205924(1)(1)(1).jpg" alt="Exhibition"
+                                    <img src="assets/RR2.photos/ZRN/1.jpg" alt="Exhibition"
                                         class="v-service-img">
                                 </div>
                                 <div class="v-card-info">
@@ -361,7 +386,7 @@
                         <div class="v-service-card" id="service-branding">
                             <div class="v-card-inner">
                                 <div class="v-service-img-container" data-text="BRANDING">
-                                    <img src="assets/RR2.photos/20250612_210005(1)(1).jpg" alt="Branding"
+                                    <img src="assets/RR2.photos/BATMAN/14.png" alt="Branding"
                                         class="v-service-img">
                                 </div>
                                 <div class="v-card-info">
@@ -374,7 +399,7 @@
                         <div class="v-service-card" id="service-design">
                             <div class="v-card-inner">
                                 <div class="v-service-img-container" data-text="DESIGN">
-                                    <img src="assets/RR2.photos/20250612_210247.jpg" alt="Design" class="v-service-img">
+                                    <img src="assets/RR2.photos/transformers/3.jpg" alt="Design" class="v-service-img">
                                 </div>
                                 <div class="v-card-info">
                                     <p class="v-service-desc">Expert design solutions that blend aesthetics with
