@@ -14,9 +14,197 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="assets/logo.png">
+    <!-- Critical Preloader Style to prevent white flash -->
+    <style>
+        html {
+            background-color: #000;
+        }
+
+        body.loading {
+            background-color: #000 !important;
+            overflow: hidden;
+            opacity: 1 !important; /* Force visible */
+        }
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #080a08; /* Dark organic forest tint */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999999;
+            overflow: hidden;
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s;
+        }
+
+        .preloader-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 209, 178, 0.08) 0%, transparent 65%), #080a08;
+            z-index: 0;
+        }
+
+        .loader-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .glow-spot {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(0, 209, 178, 0.15) 0%, transparent 70%);
+            filter: blur(40px);
+            opacity: 0.8;
+            z-index: 1;
+            animation: pulseGlow 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                transform: scale(0.9);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .booch-logo-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .booch-logo-text {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 12px;
+            text-indent: 12px; /* Center-offsets the letter spacing */
+            text-shadow: 0 0 20px rgba(0, 209, 178, 0.4);
+            animation: textReveal 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .booch-sub-text {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: #00D1B2;
+            letter-spacing: 6px;
+            text-indent: 6px;
+            margin-top: 10px;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: subReveal 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards;
+        }
+
+        @keyframes textReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes subReveal {
+            to {
+                opacity: 0.8;
+                transform: translateY(0);
+            }
+        }
+
+        /* Effervescence Bubbles */
+        .bubbles-container {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: 0;
+            background: rgba(0, 209, 178, 0.2);
+            border: 1px solid rgba(0, 209, 178, 0.3);
+            border-radius: 50%;
+            animation: floatUp 3s infinite ease-in;
+            opacity: 0;
+        }
+
+        /* Various bubble sizes and speeds */
+        .bubble:nth-child(1) { left: 20%; width: 12px; height: 12px; animation-delay: 0s; animation-duration: 2.8s; }
+        .bubble:nth-child(2) { left: 40%; width: 6px; height: 6px; animation-delay: 0.5s; animation-duration: 3.2s; }
+        .bubble:nth-child(3) { left: 60%; width: 16px; height: 16px; animation-delay: 1.2s; animation-duration: 2.5s; }
+        .bubble:nth-child(4) { left: 75%; width: 8px; height: 8px; animation-delay: 0.2s; animation-duration: 3s; }
+        .bubble:nth-child(5) { left: 15%; width: 10px; height: 10px; animation-delay: 1.8s; animation-duration: 2.7s; }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(50px) scale(0.5);
+                opacity: 0;
+            }
+            30% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-80px) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Transition out states */
+        #preloader.fade-out {
+            opacity: 0;
+            pointer-events: none;
+            visibility: hidden;
+            transform: scale(1.05);
+        }
+
+        #preloader.fade-out .loader-wrapper {
+            opacity: 0;
+            transform: scale(0.85);
+            filter: blur(15px);
+        }
+    </style>
 </head>
 
-<body>
+<body class="loading">
+
+    <!-- Booch Premium Preloader -->
+    <div id="preloader">
+        <div class="preloader-bg"></div>
+        <div class="loader-wrapper">
+            <div class="glow-spot"></div>
+            <div class="bubbles-container">
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+            </div>
+            <div class="booch-logo-container">
+                <span class="booch-logo-text">BOOCH</span>
+                <span class="booch-sub-text">ORGANIC KOMBUCHA</span>
+            </div>
+        </div>
+    </div>
 
     <div data-include="navbar.html"></div>
 
@@ -132,6 +320,29 @@
                 else nav.classList.remove('navbar-scrolled');
             }
         });
+
+        // Booch Preloader Logic
+        const preloader = document.getElementById('preloader');
+        function removePreloader() {
+            if (preloader && !preloader.classList.contains('fade-out')) {
+                preloader.classList.add('fade-out');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                    document.body.classList.remove('loading');
+                }, 800); // matches the CSS transition time
+            }
+        }
+        
+        // Remove preloader when page is fully loaded, but enforce a minimum presentation time (e.g. 1.2s)
+        const loadTime = Date.now();
+        window.addEventListener('load', () => {
+            const elapsed = Date.now() - loadTime;
+            const delay = Math.max(1200 - elapsed, 0); // Keep loader for at least 1.2s to show off the animation
+            setTimeout(removePreloader, delay);
+        });
+        
+        // Fallback in case window load event doesn't fire or takes too long
+        setTimeout(removePreloader, 3000);
     </script>
 </body>
 
