@@ -58,17 +58,17 @@
                 top: 30px !important;
                 right: 25px !important;
                 left: auto !important;
-                width: auto !important;
+                width: 160px !important; /* Fixed width stabilizes the globe icon */
                 z-index: 100 !important;
                 margin: 0 !important;
                 padding: 0 !important;
                 display: flex !important;
-                justify-content: flex-end !important;
+                justify-content: flex-start !important; /* Align to start to keep left side (globe) static */
                 align-items: center !important;
             }
 
             .loc-main {
-                justify-content: flex-end !important;
+                justify-content: flex-start !important;
                 font-size: 1.1rem !important;
                 display: flex !important;
                 align-items: center !important;
@@ -77,11 +77,11 @@
 
             .active-loc-wrapper {
                 min-width: auto !important;
-                text-align: right !important;
+                text-align: left !important;
             }
 
             #activeLocation {
-                text-align: right !important;
+                text-align: left !important;
                 display: inline-block !important;
                 font-weight: 300 !important;
                 text-transform: none !important;
@@ -94,6 +94,7 @@
             .location-cycler {
                 top: 20px !important;
                 right: 15px !important;
+                width: 140px !important; /* Proportional scaling */
             }
             .loc-main {
                 font-size: 0.9rem !important;
@@ -105,6 +106,7 @@
             .location-cycler {
                 top: 15px !important;
                 right: 12px !important;
+                width: 130px !important;
             }
             .loc-main {
                 font-size: 0.8rem !important;
