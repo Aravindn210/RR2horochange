@@ -15,38 +15,211 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="assets/logo.png">
+    
+    <style>
+        /* Custom Premium Styles for About Us Redesign */
+        body {
+            background-color: #050608 !important;
+            color: #fff !important;
+            overflow-x: hidden;
+        }
+
+        .about-bg-glow {
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 209, 178, 0.05) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+            filter: blur(50px);
+        }
+
+        .about-bg-glow-right {
+            position: absolute;
+            top: 60%;
+            right: 5%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 163, 136, 0.06) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+            filter: blur(60px);
+        }
+
+        /* Glassmorphism Cards */
+        .glass-pillar-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            padding: 40px 30px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            backdrop-filter: blur(12px);
+        }
+
+        .glass-pillar-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 209, 178, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 209, 178, 0.1);
+        }
+
+        .pillar-icon-wrapper {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(0, 209, 178, 0.15) 0%, rgba(0, 163, 136, 0.05) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            border: 1px solid rgba(0, 209, 178, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .glass-pillar-card:hover .pillar-icon-wrapper {
+            background: linear-gradient(135deg, #00d1b2 0%, #00a388 100%);
+            border-color: transparent;
+            box-shadow: 0 0 20px rgba(0, 209, 178, 0.4);
+        }
+
+        .glass-pillar-card:hover .pillar-icon-wrapper i {
+            color: #fff !important;
+        }
+
+        .pillar-icon-wrapper i {
+            font-size: 28px;
+            color: #00d1b2;
+            transition: color 0.3s ease;
+        }
+
+        .about-hero-img-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-hero-img-container::before {
+            content: '';
+            position: absolute;
+            inset: -15px;
+            border: 1px solid rgba(0, 209, 178, 0.15);
+            border-radius: 35px;
+            z-index: -1;
+            transform: rotate(-3deg);
+            transition: all 0.4s ease;
+        }
+
+        .about-hero-img-container:hover::before {
+            transform: rotate(0deg);
+            border-color: rgba(0, 209, 178, 0.4);
+        }
+
+        .about-cta-section {
+            position: relative;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 209, 178, 0.03) 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            z-index: 2;
+        }
+    </style>
 </head>
 
 <body>
     <div data-include="navbar.html"></div>
+    
     <!-- About Header -->
     <header class="page-header">
         <div class="header-overlay"></div>
         <div class="container text-center text-white">
             <h1 class="display-1 fw-bold">ABOUT <span class="text-gradient-hero">US</span></h1>
-            <p class="lead mt-3">Excellence in Innovation and Design Since 2015</p>
+            <p class="lead mt-3">Excellence in Innovation and Design</p>
         </div>
     </header>
-    <!-- About Section -->
-    <section class="about-section py-5">
+
+    <!-- Background decorative glow spots -->
+    <div class="about-bg-glow"></div>
+    <div class="about-bg-glow-right"></div>
+
+    <!-- Section 1: Intro/Mission -->
+    <section class="about-section py-5 my-md-4">
         <div class="container py-5">
             <div class="row align-items-center g-5">
                 <div class="col-lg-6" data-aos="fade-right">
                     <h2 class="display-4 fw-bold mb-4">Our Mission</h2>
-                    <p class="lead">We believe that every event should be an extraordinary experience. Our mission is to
-                        push the boundaries of design and logic to create moments that stay with you forever.</p>
-                    <p>At RR2Global, we combine creative flair with technical precision. From massive industrial
-                        exhibitions to intimate corporate launches, our team handles every detail with the same level of
-                        passion and expertise.</p>
+                    <p class="lead text-white-50">We believe that every event should be an extraordinary experience. Our mission is to push the boundaries of design and logic to create moments that stay with you forever.</p>
+                    <p class="text-white-50">At RR2Global, we combine creative flair with technical precision. From massive industrial exhibitions to intimate corporate launches, our team handles every detail with the same level of passion and expertise.</p>
+                    <p class="text-white-50">We deliver standout solutions across the GCC, turning brand visions into physical, immersive realities using high-end manufacturing, audio-visual integrations, and custom setups.</p>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
-                    <img src="assets/news_4.jpg" alt="About US" class="img-fluid rounded-5 shadow-lg">
+                    <div class="about-hero-img-container">
+                        <img src="assets/news_4.jpg" alt="About US" class="img-fluid rounded-5 shadow-lg w-100 object-fit-cover" style="max-height: 480px;">
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Section 2: Core Pillars -->
+    <section class="py-5 bg-black bg-opacity-25">
+        <div class="container py-5">
+            <div class="section-header text-center mb-5" data-aos="fade-up">
+                <h2 class="display-4 fw-bold">Our Core Pillars</h2>
+                <div class="title-underline mx-auto"></div>
+                <p class="text-muted mt-3">The principles that define our creative process and turnkey builds.</p>
+            </div>
+            
+            <div class="row g-4 mt-2">
+                <!-- Pillar 1 -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+                    <div class="glass-pillar-card">
+                        <div class="pillar-icon-wrapper">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Digital Craftsmanship</h4>
+                        <p class="text-white-50 mb-0">Merging physical fit-outs with advanced audio-visual, lighting, and spatial technologies to create highly immersive and interactive spaces.</p>
+                    </div>
+                </div>
+                <!-- Pillar 2 -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="150">
+                    <div class="glass-pillar-card">
+                        <div class="pillar-icon-wrapper">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Creative Innovation</h4>
+                        <p class="text-white-50 mb-0">Rejecting the ordinary to draft bespoke, boundary-pushing concepts, ensuring your brand story stands out uniquely in any competitive environment.</p>
+                    </div>
+                </div>
+                <!-- Pillar 3 -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-pillar-card">
+                        <div class="pillar-icon-wrapper">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Global Execution</h4>
+                        <p class="text-white-50 mb-0">Delivering turnkey, high-stakes logistical precision and structural execution seamlessly across the GCC and beyond.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Call to Action -->
+    <section class="about-cta-section py-5 text-center">
+        <div class="container py-5" data-aos="zoom-in">
+            <h2 class="display-5 fw-bold mb-3">Ready to Create the Extraordinary?</h2>
+            <p class="lead text-white-50 mb-4 mx-auto" style="max-width: 600px;">Explore our selected works gallery or speak with our design team today to craft your next brand landmark.</p>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a href="works.html" class="btn btn-primary rounded-pill px-5 py-3 fw-bold">VIEW GALLERY</a>
+                <a href="contact.html" class="btn btn-outline-light rounded-pill px-5 py-3 fw-bold">GET IN TOUCH</a>
+            </div>
+        </div>
+    </section>
+
     <div data-include="footer.html"></div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/script.js"></script>
