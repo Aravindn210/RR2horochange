@@ -586,15 +586,20 @@
                 const style = window.getComputedStyle(track);
                 const gap = parseFloat(style.gap) || 0;
                 const firstCard = track.firstElementChild;
-                const cardW = firstCard ? firstCard.offsetWidth : 380;
+                const cardW = firstCard ? firstCard.offsetWidth : 0;
+                if (cardW === 0) return; // Wait until element is rendered
                 const N = cards.length; // original cards count
                 scrollLimit = N * (cardW + gap);
             }
             // Initial call after a brief timeout to ensure layout is complete
             setTimeout(updateTeamLimits, 500);
             window.addEventListener('resize', updateTeamLimits);
+            window.addEventListener('load', updateTeamLimits);
 
             function autoScroll() {
+                if (scrollLimit <= 0) {
+                    updateTeamLimits();
+                }
                 if (!isHovered && scrollLimit > 0) {
                     track.scrollLeft += step;
                     if (track.scrollLeft >= scrollLimit) {
