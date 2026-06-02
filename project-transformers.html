@@ -348,16 +348,16 @@
             }
         }
         
-        // Remove preloader when page is fully loaded, but enforce a minimum presentation time (2.5s) to allow drawing and glowing effects to play out
+        // Remove preloader when page is fully loaded, but enforce a minimum presentation time (1.2s) to allow drawing and glowing effects to play out
         const loadTime = Date.now();
         window.addEventListener('load', () => {
             const elapsed = Date.now() - loadTime;
-            const delay = Math.max(2500 - elapsed, 0); // Enforce 2.5s minimum presentation
+            const delay = Math.max(1200 - elapsed, 0); // Enforce 1.2s minimum presentation
             setTimeout(removePreloader, delay);
         });
         
         // Fallback in case window load event doesn't fire or takes too long
-        setTimeout(removePreloader, 3000);
+        setTimeout(removePreloader, 1800);
     </script>
 </body>
 

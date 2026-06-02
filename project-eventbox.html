@@ -345,16 +345,16 @@
             }
         }
         
-        // Remove preloader when page is fully loaded, but enforce a minimum presentation time (e.g. 1.2s)
+        // Remove preloader when page is fully loaded, but enforce a minimum presentation time (e.g. 600ms)
         const loadTime = Date.now();
         window.addEventListener('load', () => {
             const elapsed = Date.now() - loadTime;
-            const delay = Math.max(1200 - elapsed, 0); // Keep loader for at least 1.2s to show off the animation
+            const delay = Math.max(600 - elapsed, 0); // Keep loader for at least 600ms
             setTimeout(removePreloader, delay);
         });
         
         // Fallback in case window load event doesn't fire or takes too long
-        setTimeout(removePreloader, 3000);
+        setTimeout(removePreloader, 1500);
     </script>
 </body>
 
