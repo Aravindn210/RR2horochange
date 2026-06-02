@@ -596,17 +596,22 @@
             window.addEventListener('resize', updateTeamLimits);
             window.addEventListener('load', updateTeamLimits);
 
+            // Seamless scroll wrapping (handles both script autoscroll and manual swipes)
+            track.addEventListener('scroll', function () {
+                if (scrollLimit <= 0) return;
+                if (track.scrollLeft >= scrollLimit) {
+                    track.scrollLeft -= scrollLimit;
+                } else if (track.scrollLeft <= 0) {
+                    track.scrollLeft += scrollLimit;
+                }
+            }, { passive: true });
+
             function autoScroll() {
                 if (scrollLimit <= 0) {
                     updateTeamLimits();
                 }
                 if (!isHovered && scrollLimit > 0) {
                     track.scrollLeft += step;
-                    if (track.scrollLeft >= scrollLimit) {
-                        track.scrollLeft = 0;
-                    } else if (track.scrollLeft <= 0) {
-                        track.scrollLeft = scrollLimit;
-                    }
                 }
                 requestAnimationFrame(autoScroll);
             }
