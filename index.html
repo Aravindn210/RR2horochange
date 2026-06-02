@@ -618,14 +618,33 @@
             }
 
             // Pause on mobile swipe/touch gestures
-            track.addEventListener('touchstart', () => {
+            track.addEventListener('touchstart', (e) => {
                 isHovered = true;
+                if (e.target === track) {
+                    track.querySelectorAll('.team-member-card').forEach(c => c.classList.remove('mobile-active'));
+                }
             }, { passive: true });
             track.addEventListener('touchend', () => {
                 setTimeout(() => {
                     isHovered = false;
+                    track.querySelectorAll('.team-member-card').forEach(c => c.classList.remove('mobile-active'));
                 }, 1500); // Resume auto scroll after 1.5 seconds
             }, { passive: true });
+
+            // Touch active simulation for mobile team cards (hover animation replacement)
+            const setupMobileCardTaps = () => {
+                const memberCards = track.querySelectorAll('.team-member-card');
+                memberCards.forEach(card => {
+                    card.addEventListener('touchstart', function (e) {
+                        e.stopPropagation();
+                        memberCards.forEach(c => {
+                            if (c !== this) c.classList.remove('mobile-active');
+                        });
+                        this.classList.toggle('mobile-active');
+                    }, { passive: true });
+                });
+            };
+            setupMobileCardTaps();
 
             // Arrow interactions
             prevBtn.addEventListener('mouseenter', () => {
