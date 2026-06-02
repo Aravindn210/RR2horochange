@@ -610,6 +610,16 @@
             track.addEventListener('mouseenter', () => isHovered = true);
             track.addEventListener('mouseleave', () => isHovered = false);
 
+            // Pause on mobile swipe/touch gestures
+            track.addEventListener('touchstart', () => {
+                isHovered = true;
+            }, { passive: true });
+            track.addEventListener('touchend', () => {
+                setTimeout(() => {
+                    isHovered = false;
+                }, 1500); // Resume auto scroll after 1.5 seconds
+            }, { passive: true });
+
             // Arrow interactions
             prevBtn.addEventListener('mouseenter', () => {
                 isHovered = false; // Force movement
