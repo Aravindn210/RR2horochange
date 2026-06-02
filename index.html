@@ -611,9 +611,11 @@
                 requestAnimationFrame(autoScroll);
             }
             autoScroll();
-            // Pause on track hover
-            track.addEventListener('mouseenter', () => isHovered = true);
-            track.addEventListener('mouseleave', () => isHovered = false);
+            // Pause on track hover (only on desktop/pointer devices that support hover)
+            if (window.matchMedia('(hover: hover)').matches) {
+                track.addEventListener('mouseenter', () => isHovered = true);
+                track.addEventListener('mouseleave', () => isHovered = false);
+            }
 
             // Pause on mobile swipe/touch gestures
             track.addEventListener('touchstart', () => {
