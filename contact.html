@@ -34,6 +34,22 @@
             background-size: 16px 12px !important;
             background-repeat: no-repeat !important;
         }
+        /* Replace default focus blue with brand aqua/turquoise */
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #00D1B2 !important;
+            box-shadow: 0 0 0 0.25rem rgba(0, 209, 178, 0.25) !important;
+        }
+        /* Dark background for dropdown options */
+        .form-select option {
+            background-color: #151515 !important;
+            color: #fff !important;
+        }
+        /* Style highlighted option background */
+        .form-select option:checked {
+            background-color: #00D1B2 !important;
+            color: #000 !important;
+        }
     </style>
 </head>
 
