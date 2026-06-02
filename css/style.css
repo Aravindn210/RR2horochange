@@ -5887,3 +5887,10 @@ textarea,
         font-size: 0.8rem !important;
     }
 }
+
+/* Contact Page Icon Box Fix */
+.contact-info-list .icon-box {
+    font-size: 1.25rem !important;
+    margin-bottom: 0 !important;
+    flex-shrink: 0 !important;
+}
