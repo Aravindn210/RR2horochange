@@ -4120,7 +4120,7 @@ textarea,
 }
 
 .brand-logo {
-    height: 42px;
+    height: 34px;
     width: auto;
     transition: all 0.3s ease;
 }
@@ -4820,7 +4820,7 @@ textarea,
     }
 
     .brand-logo {
-        height: 36px;
+        height: 28px;
     }
 }
 
@@ -4831,7 +4831,7 @@ textarea,
     }
 
     .brand-logo {
-        height: 32px;
+        height: 24px;
     }
 
     .pill-nav {
@@ -5577,7 +5577,7 @@ textarea,
         }
 
         .brand-logo {
-            height: 32px;
+            height: 20px;
         }
 
         /* Footer adjustments */
