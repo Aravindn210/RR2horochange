@@ -230,12 +230,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- ACTIVE LINK HIGHLIGHTING ---
     function setActiveLink() {
-        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+        let currentPath = window.location.pathname;
+        if (currentPath === '/' || currentPath === '') {
+            currentPath = '/index.html';
+        }
         const navLinks = document.querySelectorAll('.pill-nav-links a, .mobile-nav-links a');
 
         navLinks.forEach(link => {
-            const linkPath = link.getAttribute('href');
-            if (linkPath === currentPath) {
+            let linkPath = link.getAttribute('href');
+            if (!linkPath) return;
+            
+            // Normalize leading slashes
+            const normPath = linkPath.startsWith('/') ? linkPath : '/' + linkPath;
+            
+            // Compare without extensions and trailing slashes for cleanUrl compatibility
+            const cleanCurrent = currentPath.replace('.html', '').replace(/\/$/, '');
+            const cleanLink = normPath.replace('.html', '').replace(/\/$/, '');
+            
+            if (cleanLink === cleanCurrent) {
                 link.classList.add('active');
             } else {
                 link.classList.remove('active');
