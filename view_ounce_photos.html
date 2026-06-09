@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ounce Event Photos Preview</title>
+    <style>
+        body {
+            background-color: #111;
+            color: #eee;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 40px;
+            margin: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #00a388;
+        }
+        p {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 40px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .card {
+            background-color: #222;
+            border: 1px solid #333;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .img-container {
+            position: relative;
+            width: 100%;
+            padding-top: 125%; /* 4:5 Aspect Ratio */
+            background-color: #000;
+        }
+        .img-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .card-body {
+            padding: 15px;
+        }
+        .filename {
+            font-size: 0.85rem;
+            word-break: break-all;
+            margin: 0 0 10px 0;
+            font-family: monospace;
+            color: #00ffcc;
+        }
+        .index {
+            background-color: #00a388;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Ounce Event - Photos Preview</h1>
+    <p>Open this page through your local server (e.g. <code>http://127.0.0.1:5500/RR2website-main/view_ounce_photos.html</code>) to view all the project photos and select the best cover photo.</p>
+
+    <div class="grid">
+        <div class="card">
+            <div class="img-container">
+                <img src="assets/RR2.photos/new/ounce event/669057212_17883527775504598_3331645433675572753_n (1).webp" alt="Photo 0">
+            </div>
+            <div class="card-body">
+                <span class="index">Index 0</span>
+                <p class="filename">669057212_17883527775504598_3331645433675572753_n (1).webp</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img-container">
+                <img src="assets/RR2.photos/new/ounce event/669430893_17883527730504598_1725840406689734062_n (1).webp" alt="Photo 1">
+            </div>
+            <div class="card-body">
+                <span class="index">Index 1 (Current Cover)</span>
+                <p class="filename">669430893_17883527730504598_1725840406689734062_n (1).webp</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img-container">
+                <img src="assets/RR2.photos/new/ounce event/669692345_17883527673504598_5379798247628207130_n (1).webp" alt="Photo 2">
+            </div>
+            <div class="card-body">
+                <span class="index">Index 2</span>
+                <p class="filename">669692345_17883527673504598_5379798247628207130_n (1).webp</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img-container">
+                <img src="assets/RR2.photos/new/ounce event/669704263_17883527655504598_1022972908662332172_n (1).webp" alt="Photo 3">
+            </div>
+            <div class="card-body">
+                <span class="index">Index 3</span>
+                <p class="filename">669704263_17883527655504598_1022972908662332172_n (1).webp</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img-container">
+                <img src="assets/RR2.photos/new/ounce event/669782498_17883527691504598_1382380244041860277_n (1).webp" alt="Photo 4">
+            </div>
+            <div class="card-body">
+                <span class="index">Index 4</span>
+                <p class="filename">669782498_17883527691504598_1382380244041860277_n (1).webp</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img-container">
+                <img src="assets/RR2.photos/new/ounce event/669791193_17883527712504598_7553819075532040010_n (1).webp" alt="Photo 5">
+            </div>
+            <div class="card-body">
+                <span class="index">Index 5</span>
+                <p class="filename">669791193_17883527712504598_7553819075532040010_n (1).webp</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img-container">
+                <img src="assets/RR2.photos/new/ounce event/669913056_17883527664504598_864135577183901213_n (1).webp" alt="Photo 6">
+            </div>
+            <div class="card-body">
+                <span class="index">Index 6</span>
+                <p class="filename">669913056_17883527664504598_864135577183901213_n (1).webp</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img-container">
+                <img src="assets/RR2.photos/new/ounce event/670288761_17883527721504598_7342581374837909942_n (1).webp" alt="Photo 7">
+            </div>
+            <div class="card-body">
+                <span class="index">Index 7</span>
+                <p class="filename">670288761_17883527721504598_7342581374837909942_n (1).webp</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img-container">
+                <img src="assets/RR2.photos/new/ounce event/670811179_17883527745504598_5404486839008581432_n (1).webp" alt="Photo 8">
+            </div>
+            <div class="card-body">
+                <span class="index">Index 8</span>
+                <p class="filename">670811179_17883527745504598_5404486839008581432_n (1).webp</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img-container">
+                <img src="assets/RR2.photos/new/ounce event/671122786_17883527682504598_2758674098849192644_n (1).webp" alt="Photo 9">
+            </div>
+            <div class="card-body">
+                <span class="index">Index 9</span>
+                <p class="filename">671122786_17883527682504598_2758674098849192644_n (1).webp</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img-container">
+                <img src="assets/RR2.photos/new/ounce event/671192975_17883527754504598_2713254173617139243_n (1).webp" alt="Photo 10">
+            </div>
+            <div class="card-body">
+                <span class="index">Index 10</span>
+                <p class="filename">671192975_17883527754504598_2713254173617139243_n (1).webp</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
