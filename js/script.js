@@ -218,15 +218,15 @@ document.addEventListener('DOMContentLoaded', function () {
     };
     initTeamObserver();
 
-    // --- HERO VIDEO LAZY LOAD ---
-    const heroVideo = document.getElementById('heroVideo');
-    if (heroVideo) {
-        const source = heroVideo.querySelector('source');
-        if (source && source.dataset.src) {
-            source.src = source.dataset.src;
-            heroVideo.load();
-        }
-    }
+    // --- HERO VIDEO LAZY LOAD (disabled) ---
+    // const heroVideo = document.getElementById('heroVideo');
+    // if (heroVideo) {
+    //     const source = heroVideo.querySelector('source');
+    //     if (source && source.dataset.src) {
+    //         source.src = source.dataset.src;
+    //         heroVideo.load();
+    //     }
+    // }
 
     // --- ACTIVE LINK HIGHLIGHTING ---
     function setActiveLink() {
