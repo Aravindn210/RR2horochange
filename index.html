@@ -144,23 +144,23 @@
                 <div class="hero-reels-viewport" id="leftReelsViewport">
                     <div class="hero-reels-track" id="leftReelsTrack">
                         <div class="hero-reel-thumbnail" data-video-src="assets/newreel/IMG_6369.MP4">
-                            <video src="assets/newreel/IMG_6369.MP4" autoplay muted loop playsinline></video>
+                            <video data-src="assets/newreel/IMG_6369.MP4" muted loop playsinline preload="none"></video>
                             <div class="reel-play-indicator"><i class="fa-solid fa-play"></i></div>
                         </div>
                         <div class="hero-reel-thumbnail" data-video-src="assets/newreel/IMG_6370.MP4">
-                            <video src="assets/newreel/IMG_6370.MP4" autoplay muted loop playsinline></video>
+                            <video data-src="assets/newreel/IMG_6370.MP4" muted loop playsinline preload="none"></video>
                             <div class="reel-play-indicator"><i class="fa-solid fa-play"></i></div>
                         </div>
                         <div class="hero-reel-thumbnail" data-video-src="assets/newreel/IMG_6371.MP4">
-                            <video src="assets/newreel/IMG_6371.MP4" autoplay muted loop playsinline></video>
+                            <video data-src="assets/newreel/IMG_6371.MP4" muted loop playsinline preload="none"></video>
                             <div class="reel-play-indicator"><i class="fa-solid fa-play"></i></div>
                         </div>
                         <div class="hero-reel-thumbnail" data-video-src="assets/newreel/IMG_6372.MP4">
-                            <video src="assets/newreel/IMG_6372.MP4" autoplay muted loop playsinline></video>
+                            <video data-src="assets/newreel/IMG_6372.MP4" muted loop playsinline preload="none"></video>
                             <div class="reel-play-indicator"><i class="fa-solid fa-play"></i></div>
                         </div>
                         <div class="hero-reel-thumbnail" data-video-src="assets/newreel/IMG_6373.MP4">
-                            <video src="assets/newreel/IMG_6373.MP4" autoplay muted loop playsinline></video>
+                            <video data-src="assets/newreel/IMG_6373.MP4" muted loop playsinline preload="none"></video>
                             <div class="reel-play-indicator"><i class="fa-solid fa-play"></i></div>
                         </div>
                     </div>
@@ -172,23 +172,23 @@
                 <div class="hero-reels-viewport" id="rightReelsViewport">
                     <div class="hero-reels-track" id="rightReelsTrack">
                         <div class="hero-reel-thumbnail" data-video-src="assets/newreel/IMG_6373.MP4">
-                            <video src="assets/newreel/IMG_6373.MP4" autoplay muted loop playsinline></video>
+                            <video data-src="assets/newreel/IMG_6373.MP4" muted loop playsinline preload="none"></video>
                             <div class="reel-play-indicator"><i class="fa-solid fa-play"></i></div>
                         </div>
                         <div class="hero-reel-thumbnail" data-video-src="assets/newreel/IMG_6372.MP4">
-                            <video src="assets/newreel/IMG_6372.MP4" autoplay muted loop playsinline></video>
+                            <video data-src="assets/newreel/IMG_6372.MP4" muted loop playsinline preload="none"></video>
                             <div class="reel-play-indicator"><i class="fa-solid fa-play"></i></div>
                         </div>
                         <div class="hero-reel-thumbnail" data-video-src="assets/newreel/IMG_6371.MP4">
-                            <video src="assets/newreel/IMG_6371.MP4" autoplay muted loop playsinline></video>
+                            <video data-src="assets/newreel/IMG_6371.MP4" muted loop playsinline preload="none"></video>
                             <div class="reel-play-indicator"><i class="fa-solid fa-play"></i></div>
                         </div>
                         <div class="hero-reel-thumbnail" data-video-src="assets/newreel/IMG_6370.MP4">
-                            <video src="assets/newreel/IMG_6370.MP4" autoplay muted loop playsinline></video>
+                            <video data-src="assets/newreel/IMG_6370.MP4" muted loop playsinline preload="none"></video>
                             <div class="reel-play-indicator"><i class="fa-solid fa-play"></i></div>
                         </div>
                         <div class="hero-reel-thumbnail" data-video-src="assets/newreel/IMG_6369.MP4">
-                            <video src="assets/newreel/IMG_6369.MP4" autoplay muted loop playsinline></video>
+                            <video data-src="assets/newreel/IMG_6369.MP4" muted loop playsinline preload="none"></video>
                             <div class="reel-play-indicator"><i class="fa-solid fa-play"></i></div>
                         </div>
                     </div>
@@ -208,8 +208,9 @@
 
                 <div class="hero-v2-visual-inner">
                     <div class="hero-v2-video-container" data-aos="zoom-in" data-aos-delay="300">
-                        <video autoplay muted loop playsinline id="heroVideo">
-                            <source src="assets/IMG_6245.MOV" type="video/mp4">
+                        <video autoplay muted loop playsinline id="heroVideo" poster="assets/evolution_in_motion.jpg" preload="auto">
+                            <source src="assets/IMG_6245.mp4" type="video/mp4">
+                            <source src="assets/IMG_6245.MOV" type="video/quicktime">
                         </video>
                         <video id="reelActiveVideo" loop playsinline style="display: none;"></video>
                         <div class="video-overlay"></div>
@@ -933,6 +934,32 @@
                     // Resume carousels
                     reelActive = false;
                 });
+            }
+
+            // Deferred sequential loading of thumbnail videos after page load
+            function lazyLoadThumbnails() {
+                const thumbnails = document.querySelectorAll('.hero-reel-thumbnail video[data-src]');
+                let delay = 0;
+                thumbnails.forEach((video) => {
+                    setTimeout(() => {
+                        const dataSrc = video.getAttribute('data-src');
+                        if (dataSrc) {
+                            video.src = dataSrc;
+                            video.load();
+                            video.play().catch(err => {
+                                console.log("Autoplay thumbnail failed:", err);
+                            });
+                        }
+                    }, delay);
+                    delay += 150; // stagger load calls by 150ms to save bandwidth queues
+                });
+            }
+
+            // Bind to window load event
+            if (document.readyState === 'complete') {
+                lazyLoadThumbnails();
+            } else {
+                window.addEventListener('load', lazyLoadThumbnails);
             }
         });
     </script>
