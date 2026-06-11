@@ -609,12 +609,18 @@
                 }
             }, { passive: true });
 
+            let scrollAccumulator = 0;
             function autoScroll() {
                 if (scrollLimit <= 0) {
                     updateTeamLimits();
                 }
                 if (!isHovered && scrollLimit > 0) {
-                    track.scrollLeft += step;
+                    scrollAccumulator += step;
+                    if (Math.abs(scrollAccumulator) >= 1) {
+                        const wholePixels = Math.trunc(scrollAccumulator);
+                        track.scrollLeft += wholePixels;
+                        scrollAccumulator -= wholePixels;
+                    }
                 }
                 requestAnimationFrame(autoScroll);
             }
@@ -632,12 +638,14 @@
                     track.querySelectorAll('.team-member-card').forEach(c => c.classList.remove('mobile-active'));
                 }
             }, { passive: true });
-            track.addEventListener('touchend', () => {
+            const resumeScroll = () => {
                 setTimeout(() => {
                     isHovered = false;
                     track.querySelectorAll('.team-member-card').forEach(c => c.classList.remove('mobile-active'));
                 }, 1500); // Resume auto scroll after 1.5 seconds
-            }, { passive: true });
+            };
+            track.addEventListener('touchend', resumeScroll, { passive: true });
+            track.addEventListener('touchcancel', resumeScroll, { passive: true });
 
             // Touch active simulation for mobile team cards (hover animation replacement)
             const setupMobileCardTaps = () => {
