@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
+sharp.cache(false);
 
 const WORK_DIR = __dirname;
 const IGNORE_DIRS = ['node_modules', '.git', '.github', '.vscode', '.agents'];
@@ -43,8 +44,11 @@ async function run() {
         console.log(`Converting: ${path.relative(WORK_DIR, img.path)} -> ${path.relative(WORK_DIR, webpPath)}`);
         
         try {
+            // Read file into buffer to avoid file lock on Windows
+            const buffer = fs.readFileSync(img.path);
+            
             // Convert to webp with high quality (e.g. 85)
-            await sharp(img.path)
+            await sharp(buffer)
                 .webp({ quality: 85 })
                 .toFile(webpPath);
             

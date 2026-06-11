@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rr-2herochange.vercel.app/sitemap.xml
