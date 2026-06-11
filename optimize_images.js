@@ -30,7 +30,7 @@ async function optimizeImages() {
     console.log("=== Image Batch Optimization Starting ===");
     console.log(`Scanning assets directory: ${ASSETS_DIR}...`);
 
-    const imageExtensions = ['.png', '.jpg', '.jpeg'];
+    const imageExtensions = ['.webp', '.webp', '.webp'];
     const files = getFiles(ASSETS_DIR, imageExtensions);
 
     console.log(`Found ${files.length} image files in assets folder.\n`);
