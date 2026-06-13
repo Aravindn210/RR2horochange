@@ -442,6 +442,17 @@
             box-shadow: none;
         }
 
+        /* Date input custom styles */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+        input[type="date"]::-webkit-calendar-picker-indicator:hover {
+            opacity: 1;
+        }
+
         .form-label {
             font-size: 0.85rem;
             font-weight: 600;
@@ -896,9 +907,8 @@
                                     <input type="text" class="form-control" id="newsTitleInput" placeholder="Enter headline...">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Date Label</label>
-                                    <input type="text" class="form-control" id="newsDateInput" list="dateSuggestions" placeholder="e.g. FEB 2026">
-                                    <datalist id="dateSuggestions"></datalist>
+                                    <label class="form-label">Date</label>
+                                    <input type="date" class="form-control" id="newsDateInput">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Short Description</label>
@@ -1047,6 +1057,29 @@
             }
         }
 
+        const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+
+        function convertDateToDisplay(dateStr) {
+            if (!dateStr) return '';
+            const parts = dateStr.split('-');
+            if (parts.length < 2) return dateStr;
+            const year = parts[0];
+            const monthIndex = parseInt(parts[1], 10) - 1;
+            const monthName = months[monthIndex] || 'JAN';
+            return `${monthName} ${year}`;
+        }
+
+        function convertDisplayToDate(displayStr) {
+            if (!displayStr) return '';
+            const parts = displayStr.trim().split(/\s+/);
+            if (parts.length < 2) return '';
+            const monthName = parts[0].toUpperCase();
+            const year = parts[1];
+            const monthIndex = months.indexOf(monthName);
+            const monthNum = String(monthIndex !== -1 ? monthIndex + 1 : 1).padStart(2, '0');
+            return `${year}-${monthNum}-01`;
+        }
+
         // Setup Date suggestions, Dynamic CRUD and Drag & Drop image uploads
         let newsModalInstance, projectModalInstance;
 
@@ -1072,25 +1105,6 @@
             newsModalInstance = new bootstrap.Modal(document.getElementById('newsModal'));
             projectModalInstance = new bootstrap.Modal(document.getElementById('projectModal'));
 
-            // Setup Date Suggestions list
-            const dateInput = document.getElementById('newsDateInput');
-            const dateSuggestions = document.getElementById('dateSuggestions');
-            if (dateInput && dateSuggestions) {
-                const currentDate = new Date();
-                const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
-                const formatMonthYear = (d) => `${months[d.getMonth()]} ${d.getFullYear()}`;
-                
-                // Pre-populate with current month and year
-                dateInput.value = formatMonthYear(currentDate);
-
-                // Add past 6 months and next 12 months as suggestions
-                for (let i = -6; i <= 12; i++) {
-                    const d = new Date(currentDate.getFullYear(), currentDate.getMonth() + i, 1);
-                    const option = document.createElement('option');
-                    option.value = formatMonthYear(d);
-                    dateSuggestions.appendChild(option);
-                }
-            }
 
             // Setup Drag and Drop / Image Upload Preview
             setupDragAndDrop('newsDragArea', 'newsImgInput', 'newsDragAreaContent', 'cover');
@@ -1262,12 +1276,14 @@
             document.querySelector('#newsModal .modal-title').textContent = "New News Post";
             document.getElementById('newsForm').reset();
             
-            // Pre-populate date input
+            // Pre-populate date input with YYYY-MM-DD for calendar datepicker
             const dateInput = document.getElementById('newsDateInput');
             if (dateInput) {
-                const currentDate = new Date();
-                const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
-                dateInput.value = `${months[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
+                const today = new Date();
+                const yyyy = today.getFullYear();
+                const mm = String(today.getMonth() + 1).padStart(2, '0');
+                const dd = String(today.getDate()).padStart(2, '0');
+                dateInput.value = `${yyyy}-${mm}-${dd}`;
             }
             
             resetDragArea('newsDragArea', 'newsImgInput', 'cover');
@@ -1280,7 +1296,7 @@
             document.querySelector('#newsModal .modal-title').textContent = "Edit News Post";
             
             document.getElementById('newsTitleInput').value = item.title;
-            document.getElementById('newsDateInput').value = item.date;
+            document.getElementById('newsDateInput').value = convertDisplayToDate(item.date);
             document.getElementById('newsDescInput').value = item.desc || '';
             document.getElementById('newsLinkInput').value = item.link || '';
             
@@ -1303,15 +1319,18 @@
 
         function saveNewsPost() {
             const title = document.getElementById('newsTitleInput').value.trim();
-            const date = document.getElementById('newsDateInput').value.trim();
+            const rawDate = document.getElementById('newsDateInput').value.trim();
             const desc = document.getElementById('newsDescInput').value.trim();
             const link = document.getElementById('newsLinkInput').value.trim();
             const image = newsSelectedImageBase64 || '../assets/news_1.webp'; // Default fallback
             
-            if (!title || !date) {
-                alert("Please fill in the title and date labels.");
+            if (!title || !rawDate) {
+                alert("Please fill in the title and select a date.");
                 return;
             }
+            
+            // Convert standard YYYY-MM-DD input date to MMM YYYY display date
+            const date = convertDateToDisplay(rawDate);
             
             const postData = { image, title, date, desc, link };
             
