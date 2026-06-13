@@ -4089,6 +4089,12 @@ textarea,
     pointer-events: auto;
 }
 
+.action-side {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
 .header-main-wrapper.nav-hidden {
     transform: translateY(-150%);
     opacity: 0;
