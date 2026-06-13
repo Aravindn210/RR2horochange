@@ -442,15 +442,126 @@
             box-shadow: none;
         }
 
-        /* Date input custom styles */
-        input[type="date"]::-webkit-calendar-picker-indicator {
-            filter: invert(1);
-            cursor: pointer;
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
+        /* Custom Datepicker Styling */
+        .custom-datepicker {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 2000;
+            width: 300px;
+            background: rgba(10, 10, 10, 0.98);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 8px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 209, 178, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            animation: pickerReveal 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        input[type="date"]::-webkit-calendar-picker-indicator:hover {
-            opacity: 1;
+
+        @keyframes pickerReveal {
+            from {
+                opacity: 0;
+                transform: translateY(10px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .datepicker-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .datepicker-header .month-year-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .datepicker-header .btn-nav {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            color: rgba(255, 255, 255, 0.6);
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .datepicker-header .btn-nav:hover {
+            background: var(--card-border);
+            color: #fff;
+            border-color: rgba(0, 209, 178, 0.4);
+        }
+
+        .datepicker-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .datepicker-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+        }
+
+        .datepicker-days .day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+            border: 1px solid transparent;
+        }
+
+        .datepicker-days .day:hover:not(.empty):not(.selected) {
+            background: rgba(0, 209, 178, 0.08);
+            color: var(--aqua-primary);
+            border-color: rgba(0, 209, 178, 0.2);
+        }
+
+        .datepicker-days .day.today {
+            border-color: rgba(0, 209, 178, 0.3);
+            color: var(--aqua-primary);
+            font-weight: 600;
+        }
+
+        .datepicker-days .day.selected {
+            background: var(--aqua-primary) !important;
+            color: #000 !important;
+            font-weight: 700;
+            box-shadow: 0 0 15px rgba(0, 209, 178, 0.4);
+        }
+
+        .datepicker-days .day.empty {
+            cursor: default;
+            color: transparent;
+            pointer-events: none;
         }
 
         .form-label {
@@ -906,9 +1017,27 @@
                                     <label class="form-label">Post Title</label>
                                     <input type="text" class="form-control" id="newsTitleInput" placeholder="Enter headline...">
                                 </div>
-                                <div class="mb-3">
+                                <div class="mb-3 position-relative">
                                     <label class="form-label">Date</label>
-                                    <input type="date" class="form-control" id="newsDateInput">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="newsDateInput" placeholder="Select Date" readonly style="cursor: pointer; background: rgba(255, 255, 255, 0.05);">
+                                        <span class="input-group-text" style="background: rgba(255, 255, 255, 0.05); border: 1px solid var(--card-border); border-left: none; color: rgba(255,255,255,0.4); cursor: pointer;" onclick="document.getElementById('newsDateInput').click()">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                        </span>
+                                    </div>
+                                    <div class="custom-datepicker" id="customDatePicker">
+                                        <div class="datepicker-header">
+                                            <button type="button" class="btn-nav" id="prevMonthBtn"><i class="fa-solid fa-chevron-left"></i></button>
+                                            <span class="month-year-title" id="monthYearTitle">June 2026</span>
+                                            <button type="button" class="btn-nav" id="nextMonthBtn"><i class="fa-solid fa-chevron-right"></i></button>
+                                        </div>
+                                        <div class="datepicker-weekdays">
+                                            <div>Su</div><div>Mo</div><div>Tu</div><div>We</div><div>Th</div><div>Fr</div><div>Sa</div>
+                                        </div>
+                                        <div class="datepicker-days" id="datepickerDays">
+                                            <!-- Days generated by JS -->
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Short Description</label>
@@ -1080,6 +1209,123 @@
             return `${year}-${monthNum}-01`;
         }
 
+        let currentYear, currentMonth, selectedDate;
+
+        function initCustomDatePicker() {
+            const dateInput = document.getElementById('newsDateInput');
+            const datePicker = document.getElementById('customDatePicker');
+            const prevMonthBtn = document.getElementById('prevMonthBtn');
+            const nextMonthBtn = document.getElementById('nextMonthBtn');
+
+            if (!dateInput || !datePicker || !prevMonthBtn || !nextMonthBtn) return;
+
+            const updatePickerFromInput = () => {
+                let initialDate = new Date();
+                if (dateInput.value) {
+                    const parsed = new Date(dateInput.value);
+                    if (!isNaN(parsed.getTime())) {
+                        initialDate = parsed;
+                    }
+                }
+                currentYear = initialDate.getFullYear();
+                currentMonth = initialDate.getMonth();
+                selectedDate = new Date(initialDate.getFullYear(), initialDate.getMonth(), initialDate.getDate());
+                renderCalendar();
+            };
+
+            // Show picker on input click
+            dateInput.addEventListener('click', (e) => {
+                e.stopPropagation();
+                updatePickerFromInput();
+                datePicker.style.display = 'block';
+            });
+
+            // Prevent closing when clicking inside picker
+            datePicker.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+
+            // Close picker when clicking outside
+            document.addEventListener('click', () => {
+                datePicker.style.display = 'none';
+            });
+
+            prevMonthBtn.addEventListener('click', () => {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+                renderCalendar();
+            });
+
+            nextMonthBtn.addEventListener('click', () => {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+                renderCalendar();
+            });
+        }
+
+        function renderCalendar() {
+            const monthYearTitle = document.getElementById('monthYearTitle');
+            const datepickerDays = document.getElementById('datepickerDays');
+            const dateInput = document.getElementById('newsDateInput');
+
+            if (!monthYearTitle || !datepickerDays) return;
+
+            const monthsFull = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            monthYearTitle.textContent = `${monthsFull[currentMonth]} ${currentYear}`;
+
+            datepickerDays.innerHTML = '';
+
+            // Get first day of the month
+            const firstDayIndex = new Date(currentYear, currentMonth, 1).getDay();
+            // Get number of days in the month
+            const totalDays = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+            // Padding days
+            for (let i = 0; i < firstDayIndex; i++) {
+                const emptyDiv = document.createElement('div');
+                emptyDiv.className = 'day empty';
+                datepickerDays.appendChild(emptyDiv);
+            }
+
+            // Days of the month
+            const today = new Date();
+            for (let day = 1; day <= totalDays; day++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.className = 'day';
+                dayDiv.textContent = day;
+
+                const thisDayDate = new Date(currentYear, currentMonth, day);
+
+                if (thisDayDate.toDateString() === today.toDateString()) {
+                    dayDiv.classList.add('today');
+                }
+
+                if (selectedDate && thisDayDate.toDateString() === selectedDate.toDateString()) {
+                    dayDiv.classList.add('selected');
+                }
+
+                dayDiv.addEventListener('click', () => {
+                    selectedDate = thisDayDate;
+                    
+                    const yyyy = selectedDate.getFullYear();
+                    const mm = String(selectedDate.getMonth() + 1).padStart(2, '0');
+                    const dd = String(selectedDate.getDate()).padStart(2, '0');
+                    dateInput.value = `${yyyy}-${mm}-${dd}`;
+                    
+                    document.getElementById('customDatePicker').style.display = 'none';
+                    dateInput.dispatchEvent(new Event('change'));
+                });
+
+                datepickerDays.appendChild(dayDiv);
+            }
+        }
+
         // Setup Date suggestions, Dynamic CRUD and Drag & Drop image uploads
         let newsModalInstance, projectModalInstance;
 
@@ -1109,6 +1355,9 @@
             // Setup Drag and Drop / Image Upload Preview
             setupDragAndDrop('newsDragArea', 'newsImgInput', 'newsDragAreaContent', 'cover');
             setupDragAndDrop('projectDragArea', 'projectImgInput', 'projectDragAreaContent', 'showcase');
+
+            // Setup Custom themed Datepicker
+            initCustomDatePicker();
 
             // Render tables
             renderNews();
