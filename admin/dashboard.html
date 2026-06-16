@@ -985,7 +985,7 @@
                 <div class="content-card">
                     <div class="card-top">
                         <h3><i class="fa-solid fa-user-group"></i> Recent Signups</h3>
-                        <button class="btn-premium">Export CSV <i class="fa-solid fa-file-csv ms-2"></i></button>
+                        <button class="btn-premium" onclick="exportSubscribersToCSV()">Export CSV <i class="fa-solid fa-file-csv ms-2"></i></button>
                     </div>
                     <div class="table-wrap">
                         <table class="custom-table">
@@ -1787,6 +1787,46 @@
                     updateStats();
                 }
             }
+        }
+
+        function exportSubscribersToCSV() {
+            const subscribersSection = document.getElementById('subscribers');
+            if (!subscribersSection) return;
+            const table = subscribersSection.querySelector('.custom-table');
+            if (!table) return;
+
+            let csvRows = [];
+            
+            // Extract headers
+            const headers = Array.from(table.querySelectorAll('thead th')).map(th => {
+                return `"${th.textContent.trim().replace(/"/g, '""')}"`;
+            });
+            csvRows.push(headers.join(','));
+
+            // Extract data rows
+            const rows = table.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                const cols = Array.from(row.querySelectorAll('td')).map(td => {
+                    let text = td.textContent.trim();
+                    text = text.replace(/\s+/g, ' ');
+                    return `"${text.replace(/"/g, '""')}"`;
+                });
+                csvRows.push(cols.join(','));
+            });
+
+            // Combine rows into a CSV string (with UTF-8 BOM)
+            const csvContent = "\ufeff" + csvRows.join("\n");
+
+            // Create blob and trigger download
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.setAttribute("href", url);
+            link.setAttribute("download", "subscribers_export.csv");
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
     </script>
 </body>
