@@ -310,9 +310,9 @@
         <!-- Scrolling Marquee Background -->
         <div class="services-marquee">
             <div class="marquee-content">
-                <span>We deliver exceptional event experiences...</span>
-                <span>We deliver exceptional event experiences...</span>
-                <span>We deliver exceptional event experiences...</span>
+                <span>We deliver exceptional event experiences</span>
+                <span>We deliver exceptional event experiences</span>
+                <span>We deliver exceptional event experiences</span>
             </div>
         </div>
         <div class="container-fluid px-0">
@@ -320,13 +320,13 @@
                 <div class="v-services-left">
                     <ul class="v-services-list">
                         <li class="v-service-item" data-service="events"
-                            data-marquee="We deliver exceptional event experiences...">Events</li>
+                            data-marquee="We deliver exceptional event experiences">Events</li>
                         <li class="v-service-item" data-service="exhibition"
-                            data-marquee="Creative exhibition designs that stand out...">Exhibition</li>
+                            data-marquee="Creative exhibition designs that stand out">Exhibition</li>
                         <li class="v-service-item" data-service="branding"
-                            data-marquee="Building unique and powerful brand identities...">Branding</li>
+                            data-marquee="Building unique and powerful brand identities">Branding</li>
                         <li class="v-service-item" data-service="design"
-                            data-marquee="Modern and functional design solutions...">Design</li>
+                            data-marquee="Modern and functional design solutions">Design</li>
                     </ul>
                 </div>
                 <div class="v-services-right">
@@ -609,12 +609,23 @@
                 }
             }, { passive: true });
 
+            let isIntersecting = false;
+            const teamSection = document.getElementById('team');
+            if (teamSection) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        isIntersecting = entry.isIntersecting;
+                    });
+                }, { threshold: 0.1 });
+                observer.observe(teamSection);
+            }
+
             let scrollAccumulator = 0;
             function autoScroll() {
                 if (scrollLimit <= 0) {
                     updateTeamLimits();
                 }
-                if (!isHovered && scrollLimit > 0) {
+                if (!isHovered && scrollLimit > 0 && isIntersecting) {
                     scrollAccumulator += step;
                     if (Math.abs(scrollAccumulator) >= 1) {
                         const wholePixels = Math.trunc(scrollAccumulator);

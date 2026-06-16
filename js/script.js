@@ -260,6 +260,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Run again when partials load (navbar is dynamic)
     document.addEventListener('partialsLoaded', setActiveLink);
+// Dynamically fetch subscriber count and update UI
+fetch('data/subscriberCount.json')
+  .then(response => response.json())
+  .then(data => {
+    const countEl = document.getElementById('subscriberCount');
+    if (countEl && typeof data.count === 'number') {
+      countEl.textContent = `${data.count} Subscribers`;
+    }
+  })
+  .catch(err => console.error('Failed to load subscriber count:', err));
 });
 
 // --- MOBILE MENU LOGIC (Event Delegation for Dynamic Nav) ---
@@ -280,3 +290,68 @@ document.addEventListener('click', function (e) {
     }
 });
 
+// --- GOOGLE TRANSLATE LOGIC ---
+function getCookie(name) {
+    let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    if (match) return match[2];
+}
+
+function toggleLanguage() {
+    let currentLang = getCookie('googtrans');
+    if (currentLang && currentLang.endsWith('/ar')) {
+        // Switch to English
+        document.cookie = "googtrans=/en/en; path=/";
+        document.cookie = "googtrans=/en/en; domain=" + window.location.hostname + "; path=/";
+    } else {
+        // Switch to Arabic
+        document.cookie = "googtrans=/en/ar; path=/";
+        document.cookie = "googtrans=/en/ar; domain=" + window.location.hostname + "; path=/";
+    }
+    location.reload();
+}
+
+// Load Google Translate Script
+if (!document.getElementById('google-translate-script')) {
+    // Ensure the container exists in the DOM regardless of partials loading
+    if (!document.getElementById('google_translate_element')) {
+        const gtDiv = document.createElement('div');
+        gtDiv.id = 'google_translate_element';
+        gtDiv.style.display = 'none';
+        document.body.appendChild(gtDiv);
+    }
+
+    const script = document.createElement('script');
+    script.id = 'google-translate-script';
+    script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    document.head.appendChild(script);
+    
+    window.googleTranslateElementInit = function() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'ar,en',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+        }, 'google_translate_element');
+    };
+}
+
+// Update the language toggle button UI on load
+document.addEventListener('DOMContentLoaded', () => {
+    // Also run on partialsLoaded in case button is dynamically loaded
+    document.addEventListener('partialsLoaded', updateLangUI);
+    updateLangUI();
+});
+
+function updateLangUI() {
+    let currentLang = getCookie('googtrans');
+    let langLabel = document.getElementById('langLabel');
+    if (langLabel) {
+        if (currentLang && currentLang.endsWith('/ar')) {
+            langLabel.textContent = 'EN';
+            langLabel.parentElement.title = "Translate to English";
+        } else {
+            langLabel.textContent = 'AR';
+            langLabel.parentElement.title = "Translate to Arabic";
+        }
+    }
+}

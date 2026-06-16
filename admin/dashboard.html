@@ -987,6 +987,7 @@
                         <h3><i class="fa-solid fa-user-group"></i> Recent Signups</h3>
                         <button class="btn-premium" onclick="exportSubscribersToCSV()">Export CSV <i class="fa-solid fa-file-csv ms-2"></i></button>
                     </div>
+                    <p id="subscriberCount" class="text-aqua">2,451 Subscribers</p>
                     <div class="table-wrap">
                         <table class="custom-table">
                             <thead>
@@ -997,7 +998,7 @@
                                     <th class="text-end">Status</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="subscribersTableBody">
                                 <tr>
                                     <td>01104</td>
                                     <td class="text-aqua">marcos.tech@example.com</td>
