@@ -1707,12 +1707,27 @@
             }
         }
 
+        function getNextProjectId() {
+            if (!projectsData || projectsData.length === 0) return '01';
+            const ids = projectsData.map(p => parseInt(p.id, 10)).filter(id => !isNaN(id));
+            if (ids.length === 0) return '01';
+            const maxId = Math.max(...ids);
+            return String(maxId + 1).padStart(2, '0');
+        }
+
         // Project Modal Operations
         function openProjectModalForAdd() {
             editingProjectIndex = null;
             projectSelectedImageBase64 = null;
             document.querySelector('#projectModal .modal-title').textContent = "Add New Project";
             document.getElementById('projectForm').reset();
+            
+            // Auto-calculate and prefill next sequential ID
+            const idInput = document.getElementById('projectNumberInput');
+            if (idInput) {
+                idInput.value = getNextProjectId();
+            }
+            
             resetDragArea('projectDragArea', 'projectImgInput', 'showcase');
             projectModalInstance.show();
         }
