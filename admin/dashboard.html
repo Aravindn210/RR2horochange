@@ -901,7 +901,7 @@
                                         class="fa-solid fa-plus ms-2"></i></button>
                                 <button class="btn-premium w-100" onclick="showSection('projects')">Create New Project
                                     <i class="fa-solid fa-plus ms-2"></i></button>
-                                <button class="btn-premium w-100"
+                                <button class="btn-premium w-100" onclick="openSettingsModal()"
                                     style="background: rgba(255,255,255,0.05); color: #fff;">System Settings <i
                                         class="fa-solid fa-gear ms-2"></i></button>
                             </div>
@@ -1035,6 +1035,43 @@
     <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleSidebar()"></div>
 
     <!-- Modals -->
+    <!-- Settings Modal -->
+    <div class="modal fade" id="settingsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">System Settings</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="settingsForm">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label class="form-label text-uppercase" style="font-size: 0.85rem; letter-spacing: 1px; color: rgba(255,255,255,0.5);">Admin Email</label>
+                                <input type="email" class="form-control" value="admin@rr2global.com">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-uppercase" style="font-size: 0.85rem; letter-spacing: 1px; color: rgba(255,255,255,0.5);">Maintenance Mode</label>
+                                <select class="form-select">
+                                    <option value="off" selected>Off - Site is Live</option>
+                                    <option value="on">On - Show Maintenance Page</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label text-uppercase" style="font-size: 0.85rem; letter-spacing: 1px; color: rgba(255,255,255,0.5);">Google Analytics ID</label>
+                                <input type="text" class="form-control" value="G-XXXXXXXXXX">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-dark px-4 rounded-pill" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-premium px-5 rounded-pill" onclick="saveSettings()">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- News Modal -->
     <div class="modal fade" id="newsModal" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -1421,7 +1458,7 @@
         }
 
         // Setup Date suggestions, Dynamic CRUD and Drag & Drop image uploads
-        let newsModalInstance, projectModalInstance;
+        let newsModalInstance, projectModalInstance, settingsModalInstance;
 
         let newsData = [
             { image: '../assets/news_1.webp', title: 'Immersive Brand Experiences', date: 'FEB 2026', desc: 'Step into the future of brand engagement with immersive exhibition design that blends physical and digital worlds.', link: 'news-1.html' },
@@ -1444,6 +1481,7 @@
             // Setup bootstrap modals
             newsModalInstance = new bootstrap.Modal(document.getElementById('newsModal'));
             projectModalInstance = new bootstrap.Modal(document.getElementById('projectModal'));
+            settingsModalInstance = new bootstrap.Modal(document.getElementById('settingsModal'));
 
 
             // Setup Drag and Drop / Image Upload Preview
@@ -1610,6 +1648,16 @@
             if (activeProjects) {
                 activeProjects.textContent = String(projectsData.length).padStart(2, '0');
             }
+        }
+
+        // Settings Modal Operations
+        function openSettingsModal() {
+            settingsModalInstance.show();
+        }
+
+        function saveSettings() {
+            alert('Settings saved successfully!');
+            settingsModalInstance.hide();
         }
 
         // News Modal Operations
