@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { Jimp } = require('jimp');
+const sharp = require('sharp');
 
 const ASSETS_DIR = path.join(__dirname, 'assets');
 
@@ -27,13 +27,13 @@ function getFiles(dir, extensions) {
 }
 
 async function optimizeImages() {
-    console.log("=== Image Batch Optimization Starting ===");
+    console.log("=== Image Batch Optimization Starting (using Sharp with buffer fix) ===");
     console.log(`Scanning assets directory: ${ASSETS_DIR}...`);
 
-    const imageExtensions = ['.webp', '.webp', '.webp'];
+    const imageExtensions = ['.webp'];
     const files = getFiles(ASSETS_DIR, imageExtensions);
 
-    console.log(`Found ${files.length} image files in assets folder.\n`);
+    console.log(`Found ${files.length} WebP image files in assets folder.\n`);
 
     let totalOriginalSize = 0;
     let totalOptimizedSize = 0;
@@ -69,16 +69,25 @@ async function optimizeImages() {
         console.log(`[*] Processing: ${relativePath} (${sizeMB.toFixed(2)} MB)`);
 
         try {
-            const img = await Jimp.read(file.path);
-            let resized = false;
+            // Read file into buffer first to avoid file lock on Windows
+            const fileBuffer = fs.readFileSync(file.path);
+            const img = sharp(fileBuffer);
+            const metadata = await img.metadata();
 
-            if (img.width > maxWidth) {
-                img.resize({ w: maxWidth });
-                resized = true;
+            let buffer;
+            if (metadata.width > maxWidth) {
+                buffer = await sharp(fileBuffer)
+                    .resize({ width: maxWidth })
+                    .webp({ quality: 80 })
+                    .toBuffer();
+            } else {
+                buffer = await sharp(fileBuffer)
+                    .webp({ quality: 80 })
+                    .toBuffer();
             }
 
             // Write back in place
-            await img.write(file.path);
+            fs.writeFileSync(file.path, buffer);
             
             const optimizedSize = fs.statSync(file.path).size;
             totalOptimizedSize += optimizedSize;
@@ -96,14 +105,14 @@ async function optimizeImages() {
     const totalSavedMB = (totalOriginalSize - totalOptimizedSize) / (1024 * 1024);
     const totalOriginalSizeMB = totalOriginalSize / (1024 * 1024);
     const totalOptimizedSizeMB = totalOptimizedSize / (1024 * 1024);
-    const overallPct = ((1 - totalOptimizedSize / totalOriginalSize) * 100).toFixed(1);
+    const overallPct = totalOriginalSize > 0 ? ((1 - totalOptimizedSize / totalOriginalSize) * 100).toFixed(1) : 0;
 
     console.log("\n==========================================================");
     console.log("            IMAGE OPTIMIZATION COMPLETE STATUS            ");
     console.log("==========================================================");
     console.log(`Total Images Processed/Optimized: ${optimizedCount} files`);
-    console.log(`Original Images Directory Size:  ${totalOriginalSizeMB.toFixed(2)} MB`);
-    console.log(`Optimized Images Directory Size: ${totalOptimizedSizeMB.toFixed(2)} MB`);
+    console.log(`Original WebP Images Size:       ${totalOriginalSizeMB.toFixed(2)} MB`);
+    console.log(`Optimized WebP Images Size:      ${totalOptimizedSizeMB.toFixed(2)} MB`);
     console.log(`Total Storage Saved:             ${totalSavedMB.toFixed(2)} MB`);
     console.log(`Overall Compression Ratio:        ${overallPct}% size reduction`);
     console.log("==========================================================");
