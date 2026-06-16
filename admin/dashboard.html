@@ -479,12 +479,45 @@
             margin-bottom: 15px;
         }
 
-        .datepicker-header .month-year-title {
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 1px;
+        .month-year-selects {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            margin: 0 8px;
+        }
+
+        .datepicker-select {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
             color: #fff;
-            text-transform: uppercase;
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 4px 24px 4px 8px;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba%28255,255,255,0.6%29' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .datepicker-select:focus,
+        .datepicker-select:hover {
+            border-color: rgba(0, 209, 178, 0.5);
+            background-color: rgba(255, 255, 255, 0.08);
+            outline: none;
+        }
+
+        .datepicker-select option {
+            background-color: #0A0A0A;
+            color: #fff;
         }
 
         .datepicker-header .btn-nav {
@@ -1028,7 +1061,10 @@
                                     <div class="custom-datepicker" id="customDatePicker">
                                         <div class="datepicker-header">
                                             <button type="button" class="btn-nav" id="prevMonthBtn"><i class="fa-solid fa-chevron-left"></i></button>
-                                            <span class="month-year-title" id="monthYearTitle">June 2026</span>
+                                            <div class="month-year-selects">
+                                                <select id="monthSelect" class="datepicker-select"></select>
+                                                <select id="yearSelect" class="datepicker-select"></select>
+                                            </div>
                                             <button type="button" class="btn-nav" id="nextMonthBtn"><i class="fa-solid fa-chevron-right"></i></button>
                                         </div>
                                         <div class="datepicker-weekdays">
@@ -1216,8 +1252,40 @@
             const datePicker = document.getElementById('customDatePicker');
             const prevMonthBtn = document.getElementById('prevMonthBtn');
             const nextMonthBtn = document.getElementById('nextMonthBtn');
+            const monthSelect = document.getElementById('monthSelect');
+            const yearSelect = document.getElementById('yearSelect');
 
             if (!dateInput || !datePicker || !prevMonthBtn || !nextMonthBtn) return;
+
+            // Populate Month Select
+            if (monthSelect) {
+                monthSelect.innerHTML = months.map((m, idx) => `<option value="${idx}">${m}</option>`).join('');
+            }
+
+            // Populate Year Select (2020 - 2036)
+            if (yearSelect) {
+                let yearOptions = '';
+                const startYear = 2020;
+                const endYear = 2036;
+                for (let y = startYear; y <= endYear; y++) {
+                    yearOptions += `<option value="${y}">${y}</option>`;
+                }
+                yearSelect.innerHTML = yearOptions;
+            }
+
+            // Register select element change listeners
+            if (monthSelect) {
+                monthSelect.addEventListener('change', () => {
+                    currentMonth = parseInt(monthSelect.value, 10);
+                    renderCalendar();
+                });
+            }
+            if (yearSelect) {
+                yearSelect.addEventListener('change', () => {
+                    currentYear = parseInt(yearSelect.value, 10);
+                    renderCalendar();
+                });
+            }
 
             const updatePickerFromInput = () => {
                 let initialDate = new Date();
@@ -1270,14 +1338,39 @@
         }
 
         function renderCalendar() {
-            const monthYearTitle = document.getElementById('monthYearTitle');
+            const monthSelect = document.getElementById('monthSelect');
+            const yearSelect = document.getElementById('yearSelect');
             const datepickerDays = document.getElementById('datepickerDays');
             const dateInput = document.getElementById('newsDateInput');
 
-            if (!monthYearTitle || !datepickerDays) return;
+            if (!datepickerDays) return;
 
-            const monthsFull = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            monthYearTitle.textContent = `${monthsFull[currentMonth]} ${currentYear}`;
+            // Sync month select value
+            if (monthSelect) {
+                monthSelect.value = currentMonth;
+            }
+
+            // Sync year select value (dynamically append if outside normal range)
+            if (yearSelect) {
+                let hasYear = false;
+                for (let i = 0; i < yearSelect.options.length; i++) {
+                    if (parseInt(yearSelect.options[i].value, 10) === currentYear) {
+                        hasYear = true;
+                        break;
+                    }
+                }
+                if (!hasYear) {
+                    const opt = document.createElement('option');
+                    opt.value = currentYear;
+                    opt.textContent = currentYear;
+                    const optionsArr = Array.from(yearSelect.options);
+                    optionsArr.push(opt);
+                    optionsArr.sort((a, b) => parseInt(a.value, 10) - parseInt(b.value, 10));
+                    yearSelect.innerHTML = '';
+                    optionsArr.forEach(o => yearSelect.appendChild(o));
+                }
+                yearSelect.value = currentYear;
+            }
 
             datepickerDays.innerHTML = '';
 
