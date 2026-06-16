@@ -10,10 +10,21 @@ ASSETS_DIR = "assets"
 NEWREEL_DIR = os.path.join(ASSETS_DIR, "newreel")
 HERO_MOV = os.path.join(ASSETS_DIR, "IMG_6245.MOV")
 HERO_MP4 = os.path.join(ASSETS_DIR, "IMG_6245.mp4")
+def get_ffmpeg_path():
+    # Check local bin folder first
+    local_path = os.path.join("bin", "ffmpeg.exe")
+    if os.path.exists(local_path):
+        return local_path
+    # Check system path
+    system_path = shutil.which("ffmpeg")
+    if system_path:
+        return system_path
+    return None
+
 def check_ffmpeg():
-    if not shutil.which("ffmpeg"):
-        print("[-] FFmpeg is not found in your system PATH.")
-        print("Please install FFmpeg (https://ffmpeg.org) and make sure it is in your PATH.")
+    if not get_ffmpeg_path():
+        print("[-] FFmpeg was not found in local bin/ or in your system PATH.")
+        print("Please run 'python download_ffmpeg.py' first to download it automatically.")
         return False
     return True
 def compress_hero_video():
@@ -31,7 +42,7 @@ def compress_hero_video():
     # -acodec aac -b:a 128k: Audio compression
     # -movflags +faststart: Moves MOOV atom to front for progressive download / instant playing
     cmd = [
-        "ffmpeg", "-y", "-i", HERO_MOV,
+        get_ffmpeg_path(), "-y", "-i", HERO_MOV,
         "-vf", "scale=1280:-2",
         "-vcodec", "libx264", "-crf", "28", "-preset", "fast",
         "-acodec", "aac", "-b:a", "128k",
@@ -63,7 +74,7 @@ def compress_reel_thumbnails():
         print("[*] Target Output: H.264 MP4, 360p (narrow width), low framerate (24 fps), quality CRF 30.")
         # Reels are tiny vertical thumbnails. They do not need high resolution, high fps, or high bitrates.
         cmd = [
-            "ffmpeg", "-y", "-i", input_path,
+            get_ffmpeg_path(), "-y", "-i", input_path,
             "-vf", "scale=360:-2,fps=24",
             "-vcodec", "libx264", "-crf", "30", "-preset", "fast",
             "-an", # Strip audio track to save bandwidth (reel previews are muted anyway!)

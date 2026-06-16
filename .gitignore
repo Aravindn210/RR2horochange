@@ -5,3 +5,5 @@ node_modules/
 Thumbs.db
 *.psd
 *.psb
+bin/
+temp_ffmpeg*
