@@ -4840,7 +4840,7 @@ textarea,
     }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1024px), (max-aspect-ratio: 4/3) and (max-width: 1400px) {
     .header-main-wrapper {
         padding: 0 25px;
         top: 15px;
@@ -5649,7 +5649,7 @@ textarea,
 
 /* Viewport masks the overflowing content */
 .hero-reels-viewport {
-    height: 850px; /* Fits more thumbnails on desktop */
+    height: 660px; /* Reverted to 660px to prevent overlapping on desktop */
     overflow: hidden;
     position: relative;
     width: 100%;
@@ -5846,7 +5846,7 @@ textarea,
 }
 
 /* Responsive Reels logic (Mobile & Tablet) */
-@media (max-width: 1024px) {
+@media (max-width: 1024px), (max-aspect-ratio: 4/3) and (max-width: 1400px) {
     .hero-reels-container {
         position: relative;
         top: auto;
