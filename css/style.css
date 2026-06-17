@@ -470,7 +470,7 @@ textarea,
     }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
     .hero-v2 {
         flex-direction: column;
         justify-content: center;
@@ -4491,7 +4491,7 @@ textarea,
 }
 
 
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
     .location-cycler {
         position: relative;
         top: 0;
@@ -4840,7 +4840,7 @@ textarea,
     }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
     .header-main-wrapper {
         padding: 0 25px;
         top: 15px;
@@ -5276,7 +5276,7 @@ textarea,
         transform: translateX(5px);
     }
 
-    @media (max-width: 991px) {
+    @media (max-width: 1024px) {
         .mobile-toggle {
             display: flex;
         }
@@ -5790,14 +5790,14 @@ textarea,
 }
 
 /* Adjust position of location-cycler to not clash with right-side reels on smaller desktops */
-@media (max-width: 1400px) and (min-width: 992px) {
+@media (max-width: 1400px) and (min-width: 1025px) {
     .location-cycler {
         right: -60px;
     }
 }
 
 /* Responsive Reels logic (Mobile & Tablet) */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
     .hero-reels-container {
         position: relative;
         top: auto;

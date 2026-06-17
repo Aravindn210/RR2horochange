@@ -52,7 +52,7 @@
         }
 
         /* Responsive location-cycler positioning inside the top-right of the video */
-        @media (max-width: 991px) {
+        @media (max-width: 1024px) {
             .location-cycler {
                 position: absolute !important;
                 top: 30px !important;
@@ -572,7 +572,7 @@
             const track = document.getElementById('teamTrack');
             const prevBtn = document.getElementById('teamPrev');
             const nextBtn = document.getElementById('teamNext');
-            const baseStep = 0.7;
+            const baseStep = 1.2;
             let step = baseStep;
             let isHovered = false;
 
@@ -825,7 +825,7 @@
                 let leftLimit = leftTrack.scrollHeight / 2;
                 let rightLimit = rightTrack.scrollHeight / 2;
                 function updateLimits() {
-                    const isMobile = window.innerWidth < 992;
+                    const isMobile = window.innerWidth < 1025;
                     const leftFirst = leftTrack.firstElementChild;
                     const rightFirst = rightTrack.firstElementChild;
                     const leftStyle = window.getComputedStyle(leftTrack);
@@ -854,17 +854,17 @@
                 // Scroll Animation loop
                 function animateCarousels() {
                     if (!reelActive) {
-                        const isMobile = window.innerWidth < 992;
+                        const isMobile = window.innerWidth < 1025;
                         // Left Carousel scrolling (Down on desktop, Left on mobile)
                         if (!leftHovered) {
                             if (isMobile) {
-                                leftOffset += 0.6;
+                                leftOffset += 1.0;
                                 if (leftOffset >= leftLimit) {
                                     leftOffset = 0;
                                 }
                                 leftTrack.style.transform = `translateX(${-leftOffset}px)`;
                             } else {
-                                leftOffset -= 0.6;
+                                leftOffset -= 1.0;
                                 if (leftOffset <= 0) {
                                     leftOffset = leftLimit;
                                 }
@@ -874,13 +874,13 @@
                         // Right Carousel scrolling (Up on desktop, Right on mobile)
                         if (!rightHovered) {
                             if (isMobile) {
-                                rightOffset -= 0.6;
+                                rightOffset -= 1.0;
                                 if (rightOffset <= 0) {
                                     rightOffset = rightLimit;
                                 }
                                 rightTrack.style.transform = `translateX(${-rightOffset}px)`;
                             } else {
-                                rightOffset += 0.6;
+                                rightOffset += 1.0;
                                 if (rightOffset >= rightLimit) {
                                     rightOffset = 0;
                                 }
