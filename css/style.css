@@ -5649,7 +5649,7 @@ textarea,
 
 /* Viewport masks the overflowing content */
 .hero-reels-viewport {
-    height: 660px; /* Fits larger thumbnails on desktop */
+    height: 850px; /* Fits more thumbnails on desktop */
     overflow: hidden;
     position: relative;
     width: 100%;
@@ -5793,6 +5793,55 @@ textarea,
 @media (max-width: 1400px) and (min-width: 1025px) {
     .location-cycler {
         right: -60px;
+    }
+}
+
+/* Tablet/iPad Landscape Tweaks (1025px - 1400px) */
+@media (max-width: 1400px) and (min-width: 1025px) {
+    .hero-v2-visual {
+        width: 65%; /* Make main video larger */
+        top: 48%; /* Move main video more upside */
+    }
+    
+    .hero-reels-container {
+        width: 140px;
+        top: 120px; /* Move reels more upside to match */
+    }
+
+    .hero-reels-container.left-reels {
+        left: 2%;
+    }
+
+    .hero-reels-container.right-reels {
+        right: 2%;
+    }
+
+    .hero-reels-viewport {
+        height: 520px;
+    }
+
+    .hero-reels-track {
+        width: 120px;
+        left: 10px;
+        gap: 15px;
+    }
+
+    .hero-reel-thumbnail {
+        width: 120px;
+        height: 213px; /* Keep 9:16 ratio */
+        border-radius: 15px;
+    }
+    
+    .video-overlay-img.top-left {
+        width: 200px;
+        left: -50px;
+        top: -10px;
+    }
+
+    .video-overlay-img.bottom-right {
+        width: 240px;
+        right: -40px;
+        bottom: -20px;
     }
 }
 
