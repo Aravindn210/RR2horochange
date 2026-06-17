@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=8">
-    <link rel="stylesheet" href="css/overlay_updates.css?v=8">
+    <link rel="stylesheet" href="css/style.css?v=10">
+    <link rel="stylesheet" href="css/overlay_updates.css?v=10">
     <link rel="icon" type="image/png" href="assets/logo.webp">
     <!-- Critical Preloader Style to prevent white flash -->
     <!-- Critical Preloader Style to prevent white flash -->
@@ -825,7 +825,7 @@
                 let leftLimit = leftTrack.scrollHeight / 2;
                 let rightLimit = rightTrack.scrollHeight / 2;
                 function updateLimits() {
-                    const isMobile = window.innerWidth < 1025;
+                    const isMobile = window.getComputedStyle(leftTrack).flexDirection === 'row';
                     const leftFirst = leftTrack.firstElementChild;
                     const rightFirst = rightTrack.firstElementChild;
                     const leftStyle = window.getComputedStyle(leftTrack);
@@ -854,7 +854,7 @@
                 // Scroll Animation loop
                 function animateCarousels() {
                     if (!reelActive) {
-                        const isMobile = window.innerWidth < 1025;
+                        const isMobile = window.getComputedStyle(leftTrack).flexDirection === 'row';
                         // Left Carousel scrolling (Down on desktop, Left on mobile)
                         if (!leftHovered) {
                             if (isMobile) {
