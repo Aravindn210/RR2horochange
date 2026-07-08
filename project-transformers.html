@@ -14,7 +14,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css?v=1780922111717">
     <link rel="icon" type="image/png" href="assets/logo.webp">
-    
+
     <!-- Critical Preloader Style to prevent white flash -->
     <style>
         html {
@@ -22,9 +22,10 @@
         }
 
         body.loading {
-            background-color: #000 !important;
+            background-color: #000000 !important;
             overflow: hidden;
-            opacity: 1 !important; /* Force visible */
+            opacity: 1 !important;
+            /* Force visible */
         }
 
         #preloader {
@@ -75,6 +76,7 @@
                 transform: scale(0.85);
                 opacity: 0.6;
             }
+
             100% {
                 transform: scale(1.15);
                 opacity: 0.9;
@@ -112,7 +114,7 @@
             stroke-linecap: round;
             stroke-linejoin: round;
             filter: drop-shadow(0 0 4px rgba(0, 209, 178, 0.5));
-            animation: 
+            animation:
                 drawPath 1.6s cubic-bezier(0.25, 1, 0.5, 1) forwards,
                 fillCyber 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.8s forwards;
         }
@@ -134,7 +136,7 @@
 
         /* Make the eyes glow red for an authentic, premium touch */
         .eye-path {
-            animation: 
+            animation:
                 drawPath 1.6s cubic-bezier(0.25, 1, 0.5, 1) forwards,
                 fillEyes 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.8s forwards;
         }
@@ -145,6 +147,7 @@
                 stroke: var(--aqua-primary);
                 filter: drop-shadow(0 0 5px rgba(0, 209, 178, 0.5));
             }
+
             100% {
                 fill: #ff0055;
                 stroke: rgba(255, 0, 80, 0);
@@ -164,6 +167,7 @@
                 stroke: var(--aqua-primary);
                 filter: drop-shadow(0 0 4px rgba(0, 209, 178, 0.5));
             }
+
             100% {
                 fill: var(--aqua-primary);
                 stroke: rgba(0, 209, 178, 0);
@@ -197,34 +201,43 @@
             <div class="transformers-logo-container">
                 <svg viewBox="0 0 192.756 192.756" class="transformers-svg" xmlns="http://www.w3.org/2000/svg">
                     <!-- Left Ear & Face Piece (Includes cutouts for forehead slot and left eye) -->
-                    <path class="transformers-path" d="M74.63 56.749L42.399 40.096 38.233 19.28H17.646l9.607 54.879 21.393 14.808H80.64l-6.01-32.218zm-6.484 3.122l.284 5.724-36.112-16.274-.473-5.866 36.301 16.416zm3.597 15.848v5.44L34.59 64.649l-.568-4.778 37.721 15.848z" />
-                    
+                    <path class="transformers-path"
+                        d="M74.63 56.749L42.399 40.096 38.233 19.28H17.646l9.607 54.879 21.393 14.808H80.64l-6.01-32.218zm-6.484 3.122l.284 5.724-36.112-16.274-.473-5.866 36.301 16.416zm3.597 15.848v5.44L34.59 64.649l-.568-4.778 37.721 15.848z" />
+
                     <!-- Forehead Crest (Includes center cutout) -->
-                    <path class="transformers-path" d="M144.914 36.926l2.887-13.483C112.588 11 78.085 10.527 44.245 22.118l2.319 13.814 47.613 24.175 50.737-23.181zm-49.412 7.049L75.198 29.924h40.845L95.502 43.975z" />
-                    
+                    <path class="transformers-path"
+                        d="M144.914 36.926l2.887-13.483C112.588 11 78.085 10.527 44.245 22.118l2.319 13.814 47.613 24.175 50.737-23.181zm-49.412 7.049L75.198 29.924h40.845L95.502 43.975z" />
+
                     <!-- Right Ear & Face Piece (Includes cutouts for forehead slot and right eye) -->
-                    <path class="transformers-path" d="M175.109 21.077h-21.061l-4.971 20.012-33.84 16.416-5.963 31.981h34.359l21.062-13.247 10.414-55.162zm-15.38 26.256v5.488l-36.396 14.288v-5.44l36.396-14.336zm-3.883 15.66v4.92L118.6 83.242V77.28l37.246-14.287z" />
-                    
+                    <path class="transformers-path"
+                        d="M175.109 21.077h-21.061l-4.971 20.012-33.84 16.416-5.963 31.981h34.359l21.062-13.247 10.414-55.162zm-15.38 26.256v5.488l-36.396 14.288v-5.44l36.396-14.336zm-3.883 15.66v4.92L118.6 83.242V77.28l37.246-14.287z" />
+
                     <!-- Left Cheek -->
-                    <path class="transformers-path" d="M41.879 102.26L40.27 89.534l-11.928-7.57 4.639 73.093 28.397 14.807.285-55.115-19.784-12.489z" />
-                    
+                    <path class="transformers-path"
+                        d="M41.879 102.26L40.27 89.534l-11.928-7.57 4.639 73.093 28.397 14.807.285-55.115-19.784-12.489z" />
+
                     <!-- Right Cheek -->
-                    <path class="transformers-path" d="M162.852 83.525l-13.538 9.368-.519 9.887-21.061 12.727v55.398l29.438-12.963 5.68-74.417z" />
-                    
+                    <path class="transformers-path"
+                        d="M162.852 83.525l-13.538 9.368-.519 9.887-21.061 12.727v55.398l29.438-12.963 5.68-74.417z" />
+
                     <!-- Nose / Center Bar -->
-                    <path class="transformers-path" d="M81.682 60.627l4.402 26.777v49.959h17.465V86.884l4.922-26.257-14.294 6.009-12.495-6.009z" />
-                    
+                    <path class="transformers-path"
+                        d="M81.682 60.627l4.402 26.777v49.959h17.465V86.884l4.922-26.257-14.294 6.009-12.495-6.009z" />
+
                     <!-- Mouthplate Outline -->
-                    <path class="transformers-path" d="M67.342 171.71l5.49 3.879 7.289-24.175h28.35l7.525 23.892 6.248-3.36v-57.197l-12.732-11.732v39.266H80.641l-.52-39.266-12.779 11.732v56.961z" />
-                    
+                    <path class="transformers-path"
+                        d="M67.342 171.71l5.49 3.879 7.289-24.175h28.35l7.525 23.892 6.248-3.36v-57.197l-12.732-11.732v39.266H80.641l-.52-39.266-12.779 11.732v56.961z" />
+
                     <!-- Chin Piece -->
                     <path class="transformers-path" d="M83.765 156.618l-5.727 22.377h32.798l-6.529-22.377H83.765z" />
-                    
+
                     <!-- Left Eye (Glowing Red Overlay) -->
-                    <polygon class="transformers-path eye-path" points="71.743,75.719 71.743,81.159 34.59,64.649 34.022,59.871" />
-                    
+                    <polygon class="transformers-path eye-path"
+                        points="71.743,75.719 71.743,81.159 34.59,64.649 34.022,59.871" />
+
                     <!-- Right Eye (Glowing Red Overlay) -->
-                    <polygon class="transformers-path eye-path" points="155.846,62.993 155.846,67.913 118.6,83.242 118.6,77.28" />
+                    <polygon class="transformers-path eye-path"
+                        points="155.846,62.993 155.846,67.913 118.6,83.242 118.6,77.28" />
                 </svg>
             </div>
         </div>
@@ -246,12 +259,16 @@
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-8" data-aos="fade-up">
-                    <img src="assets/RR2.photos/transformers/1.webp"
-                        alt="Transformers Cybertron Hub" class="img-fluid rounded-5 shadow-lg mb-4 w-100 object-fit-cover" style="max-height: 500px;">
+                    <img src="assets/RR2.photos/transformers/1.webp" alt="Transformers Cybertron Hub"
+                        class="img-fluid rounded-5 shadow-lg mb-4 w-100 object-fit-cover" style="max-height: 500px;">
                     <h2 class="display-4 fw-bold mb-4">Project Overview</h2>
-                    <p class="lead text-white-50">A high-tech, futuristic visitor experience showcasing iconic Transformers models, futuristic projection mapping, and motion-based interactive pods.</p>
-                    <p>RR2Global designed and executed this project with meticulous attention to detail, creating a cohesive brand space that successfully engaged target demographics across the region.</p>
-                    <p>Leveraging high-end manufacturing, modern audio-visual integration, and premium structural design, the team ensured the build exceeded expectations and delivered remarkable brand recall.</p>
+                    <p class="lead text-white-50">A high-tech, futuristic visitor experience showcasing iconic
+                        Transformers models, futuristic projection mapping, and motion-based interactive pods.</p>
+                    <p>RR2Global designed and executed this project with meticulous attention to detail, creating a
+                        cohesive brand space that successfully engaged target demographics across the region.</p>
+                    <p>Leveraging high-end manufacturing, modern audio-visual integration, and premium structural
+                        design, the team ensured the build exceeded expectations and delivered remarkable brand recall.
+                    </p>
                 </div>
                 <div class="col-lg-4" data-aos="fade-left">
                     <div class="bg-glass-card p-4 rounded-4 sticky-top"
@@ -290,31 +307,40 @@
             <h3 class="fw-bold mb-5 text-center">Visual Highlights</h3>
             <div class="row g-4">
                 <div class="col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="0">
-                    <img src="assets/RR2.photos/transformers/0.webp" alt="Highlight 1" class="img-fluid rounded-4 shadow-sm w-100 object-fit-cover" style="height: 250px;">
+                    <img src="assets/RR2.photos/transformers/0.webp" alt="Highlight 1"
+                        class="img-fluid rounded-4 shadow-sm w-100 object-fit-cover" style="height: 250px;">
                 </div>
                 <div class="col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="assets/RR2.photos/transformers/1.webp" alt="Highlight 2" class="img-fluid rounded-4 shadow-sm w-100 object-fit-cover" style="height: 250px;">
+                    <img src="assets/RR2.photos/transformers/1.webp" alt="Highlight 2"
+                        class="img-fluid rounded-4 shadow-sm w-100 object-fit-cover" style="height: 250px;">
                 </div>
                 <div class="col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="400">
-                    <img src="assets/RR2.photos/transformers/2.webp" alt="Highlight 3" class="img-fluid rounded-4 shadow-sm w-100 object-fit-cover" style="height: 250px;">
+                    <img src="assets/RR2.photos/transformers/2.webp" alt="Highlight 3"
+                        class="img-fluid rounded-4 shadow-sm w-100 object-fit-cover" style="height: 250px;">
                 </div>
                 <div class="col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="0">
-                    <img src="assets/RR2.photos/transformers/3.webp" alt="Highlight 4" class="img-fluid rounded-4 shadow-sm w-100 object-fit-cover" style="height: 250px;">
+                    <img src="assets/RR2.photos/transformers/3.webp" alt="Highlight 4"
+                        class="img-fluid rounded-4 shadow-sm w-100 object-fit-cover" style="height: 250px;">
                 </div>
                 <div class="col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="assets/RR2.photos/transformers/4.webp" alt="Highlight 5" class="img-fluid rounded-4 shadow-sm w-100 object-fit-cover" style="height: 250px;">
+                    <img src="assets/RR2.photos/transformers/4.webp" alt="Highlight 5"
+                        class="img-fluid rounded-4 shadow-sm w-100 object-fit-cover" style="height: 250px;">
                 </div>
                 <div class="col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="400">
-                    <img src="assets/RR2.photos/transformers/5.webp" alt="Highlight 6" class="img-fluid rounded-4 shadow-sm w-100 object-fit-cover" style="height: 250px;">
+                    <img src="assets/RR2.photos/transformers/5.webp" alt="Highlight 6"
+                        class="img-fluid rounded-4 shadow-sm w-100 object-fit-cover" style="height: 250px;">
                 </div>
                 <div class="col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="0">
-                    <img src="assets/RR2.photos/transformers/6.webp" alt="Highlight 7" class="img-fluid rounded-4 shadow-sm w-100 object-fit-cover" style="height: 250px;">
+                    <img src="assets/RR2.photos/transformers/6.webp" alt="Highlight 7"
+                        class="img-fluid rounded-4 shadow-sm w-100 object-fit-cover" style="height: 250px;">
                 </div>
                 <div class="col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="assets/RR2.photos/transformers/7.webp" alt="Highlight 8" class="img-fluid rounded-4 shadow-sm w-100 object-fit-cover" style="height: 250px;">
+                    <img src="assets/RR2.photos/transformers/7.webp" alt="Highlight 8"
+                        class="img-fluid rounded-4 shadow-sm w-100 object-fit-cover" style="height: 250px;">
                 </div>
                 <div class="col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="400">
-                    <img src="assets/RR2.photos/transformers/8.webp" alt="Highlight 9" class="img-fluid rounded-4 shadow-sm w-100 object-fit-cover" style="height: 250px;">
+                    <img src="assets/RR2.photos/transformers/8.webp" alt="Highlight 9"
+                        class="img-fluid rounded-4 shadow-sm w-100 object-fit-cover" style="height: 250px;">
                 </div>
             </div>
         </div>
@@ -347,7 +373,7 @@
                 }, 800); // matches the CSS transition time
             }
         }
-        
+
         // Remove preloader when page is fully loaded, but enforce a minimum presentation time (1.2s) to allow drawing and glowing effects to play out
         const loadTime = Date.now();
         window.addEventListener('load', () => {
@@ -355,7 +381,7 @@
             const delay = Math.max(1200 - elapsed, 0); // Enforce 1.2s minimum presentation
             setTimeout(removePreloader, delay);
         });
-        
+
         // Fallback in case window load event doesn't fire or takes too long
         setTimeout(removePreloader, 1800);
     </script>

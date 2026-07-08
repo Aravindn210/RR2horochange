@@ -194,7 +194,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="hero-v2-visual">
                 <!-- Location Cycler moved here (before video for mobile/tablet alignment) -->
                 <div class="location-cycler" data-aos="fade-left" data-aos-delay="800">
@@ -209,7 +208,7 @@
                 <div class="hero-v2-visual-inner">
                     <div class="hero-v2-video-container" data-aos="zoom-in" data-aos-delay="300">
                         <video autoplay muted loop playsinline id="heroVideo">
-                            <source src="assets/IMG_6245.MOV" type="video/mp4">
+                            <source src="assets/IMG_6245.mp4" type="video/mp4">
                         </video>
                         <video id="reelActiveVideo" loop playsinline style="display: none;"></video>
                         <div class="video-overlay"></div>
@@ -263,6 +262,21 @@
                 <div class="title-underline mx-auto title-underline-aqua"></div>
             </div>
             <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="0">
+                    <a href="news-7.html" class="text-decoration-none">
+                        <div class="highlight-card">
+                            <div class="card-img-wrapper d-flex">
+                                <img src="assets/RR2.photos/madagascar/730776660_18088679753316218_1374404990201767006_n.webp" alt="Madagascar" style="width: 50% !important;">
+                                <img src="assets/RR2.photos/ounce padel day/733868453_17896105158504598_2967063520825998373_n.webp" alt="Padel Day" style="width: 50% !important;">
+                            </div>
+                            <div class="card-body-custom">
+                                <span class="date text-aqua">JUL 2026</span>
+                                <h4 class="text-white">Double Feature: Madagascar & Sharjah Padel Day</h4>
+                                <p class="text-white opacity-75">Unveiling the successful completion of our immersive brand activation and high-stakes corporate event projects.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
                 <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="100">
                     <a href="news-1.html" class="text-decoration-none">
                         <div class="highlight-card">
@@ -709,6 +723,20 @@
 
             if (!mainVideo || !soundBtn) return;
 
+            // Pause main background video when it scrolls out of the viewport to save CPU/GPU resources
+            const mainVideoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (!reelActive && mainVideo.style.display !== 'none') {
+                            mainVideo.play().catch(() => {});
+                        }
+                    } else {
+                        mainVideo.pause();
+                    }
+                });
+            }, { threshold: 0.1 });
+            mainVideoObserver.observe(mainVideo);
+
             // Flag to track whether the audio system is unmuted
             let isAudioEnabled = false;
 
@@ -763,11 +791,14 @@
             // Clone thumbnails for infinite loop
             function initClones(track) {
                 const items = Array.from(track.children);
-                items.forEach(item => {
-                    const clone = item.cloneNode(true);
-                    clone.addEventListener('click', onReelClick);
-                    track.appendChild(clone);
-                });
+                // Clone 3 times (making 4 sets total) to ensure horizontal track width > 1900px
+                for (let i = 0; i < 3; i++) {
+                    items.forEach(item => {
+                        const clone = item.cloneNode(true);
+                        clone.addEventListener('click', onReelClick);
+                        track.appendChild(clone);
+                    });
+                }
             }
             // Reels Click Handler
             function onReelClick(e) {
@@ -810,6 +841,9 @@
             }
 
             if (leftTrack && rightTrack) {
+                const originalLeftCount = leftTrack.children.length;
+                const originalRightCount = rightTrack.children.length;
+
                 // Initialize clones
                 initClones(leftTrack);
                 initClones(rightTrack);
@@ -822,8 +856,8 @@
                 rightTrack.addEventListener('mouseenter', () => rightHovered = true);
                 rightTrack.addEventListener('mouseleave', () => rightHovered = false);
                 // Recalculate dimensions on resize/load
-                let leftLimit = leftTrack.scrollHeight / 2;
-                let rightLimit = rightTrack.scrollHeight / 2;
+                let leftLimit = leftTrack.scrollHeight / 4;
+                let rightLimit = rightTrack.scrollHeight / 4;
                 function updateLimits() {
                     const isMobile = window.getComputedStyle(leftTrack).flexDirection === 'row';
                     const leftFirst = leftTrack.firstElementChild;
@@ -832,8 +866,8 @@
                     const rightStyle = window.getComputedStyle(rightTrack);
                     const leftGap = parseFloat(leftStyle.gap) || 0;
                     const rightGap = parseFloat(rightStyle.gap) || 0;
-                    const leftN = leftTrack.children.length / 2;
-                    const rightN = rightTrack.children.length / 2;
+                    const leftN = originalLeftCount;
+                    const rightN = originalRightCount;
 
                     if (isMobile) {
                         const leftWidth = leftFirst ? leftFirst.offsetWidth : 80;
@@ -923,22 +957,36 @@
                     reelActive = false;
                 });
             }
-            // Deferred sequential loading of thumbnail videos after page load
+            // Use IntersectionObserver to load/play/pause thumbnail videos dynamically based on visibility
             function lazyLoadThumbnails() {
                 const thumbnails = document.querySelectorAll('.hero-reel-thumbnail video[data-src]');
-                let delay = 0;
-                thumbnails.forEach((video) => {
-                    setTimeout(() => {
-                        const dataSrc = video.getAttribute('data-src');
-                        if (dataSrc) {
-                            video.src = dataSrc;
-                            video.load();
+                
+                const observerOptions = {
+                    root: null, // observe relative to browser viewport
+                    rootMargin: '100px 0px 100px 0px', // preload slightly before entering viewport
+                    threshold: 0.01
+                };
+
+                const videoObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        const video = entry.target;
+                        if (entry.isIntersecting) {
+                            const dataSrc = video.getAttribute('data-src');
+                            if (dataSrc && !video.src) {
+                                video.src = dataSrc;
+                                video.load();
+                            }
                             video.play().catch(err => {
-                                console.log("Autoplay thumbnail failed:", err);
+                                // Ignore autoplay restrictions
                             });
+                        } else {
+                            video.pause();
                         }
-                    }, delay);
-                    delay += 150; // stagger load calls by 150ms to save bandwidth queues
+                    });
+                }, observerOptions);
+
+                thumbnails.forEach(video => {
+                    videoObserver.observe(video);
                 });
             }
 
