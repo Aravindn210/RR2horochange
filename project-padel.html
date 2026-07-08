@@ -236,33 +236,11 @@
         #preloader.fade-out .loader-wrapper {
             opacity: 0;
             transform: scale(0.85);
-            filter: blur(15px);
         }
     </style>
 </head>
 
-<body class="loading">
-
-    <!-- Cartoon Network Premium Preloader -->
-    <div id="preloader">
-        <div class="preloader-bg"></div>
-        <div class="loader-wrapper">
-            <div class="glow-spot"></div>
-            <div class="shapes-container">
-                <div class="shape shape-cyan"></div>
-                <div class="shape shape-magenta"></div>
-                <div class="shape shape-yellow"></div>
-                <div class="shape shape-checkers"></div>
-                <div class="shape shape-cyan"></div>
-                <div class="shape shape-magenta"></div>
-                <div class="shape shape-yellow"></div>
-                <div class="shape shape-checkers"></div>
-            </div>
-            <div class="eventbox-logo-container">
-                <img src="assets/eventbox-logo.webp" alt="Eventbox Logo" class="eventbox-logo-img">
-            </div>
-        </div>
-    </div>
+<body>
 
     <div data-include="navbar.html"></div>
 
@@ -308,6 +286,11 @@
                             </li>
                         </ul>
                         <div class="mt-4">
+                            <!-- Instagram Link Start -->
+                            <a href="https://www.instagram.com/rr2global/" target="_blank" class="btn btn-primary w-100 rounded-pill mb-2" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); border: none;">
+                                <i class="fab fa-instagram me-2"></i> VIEW ON INSTAGRAM
+                            </a>
+                            <!-- Instagram Link End -->
                             <a href="works.html" class="btn btn-outline-light w-100 rounded-pill">BACK TO GALLERY</a>
                         </div>
                     </div>
@@ -370,28 +353,6 @@
                 else nav.classList.remove('navbar-scrolled');
             }
         });
-
-        // Cartoon Network Preloader Logic
-        const preloader = document.getElementById('preloader');
-        function removePreloader() {
-            if (preloader && !preloader.classList.contains('fade-out')) {
-                preloader.classList.add('fade-out');
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                    document.body.classList.remove('loading');
-                }, 800); // matches the CSS transition time
-            }
-        }
-        // Remove preloader when page is fully loaded, but enforce a minimum presentation time (e.g. 600ms)
-        const loadTime = Date.now();
-        window.addEventListener('load', () => {
-            const elapsed = Date.now() - loadTime;
-            const delay = Math.max(600 - elapsed, 0); // Keep loader for at least 600ms
-            setTimeout(removePreloader, delay);
-        });
-
-        // Fallback in case window load event doesn't fire or takes too long
-        setTimeout(removePreloader, 1500);
     </script>
 </body>
 
