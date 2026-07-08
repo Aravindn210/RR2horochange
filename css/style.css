@@ -4450,8 +4450,8 @@ textarea,
 
 .location-cycler {
     position: absolute;
-    top: 20px;
-    right: -120px;
+    top: 30px;
+    right: 40px;
     width: auto;
     color: #fff;
     z-index: 40;
@@ -5789,12 +5789,7 @@ textarea,
     clip-path: inset(0 0 0 0 round 115px) !important;
 }
 
-/* Adjust position of location-cycler to not clash with right-side reels on smaller desktops */
-@media (max-width: 1400px) and (min-width: 1025px) {
-    .location-cycler {
-        right: -60px;
-    }
-}
+
 
 /* Tablet/iPad Landscape Tweaks (1025px - 1400px) */
 @media (max-width: 1400px) and (min-width: 1025px) {
