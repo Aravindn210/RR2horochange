@@ -5980,3 +5980,40 @@ body { top: 0 !important; }
 #goog-gt-tt { display: none !important; }
 .goog-te-balloon-frame { display: none !important; }
 .goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
+
+/* === LARGE SCREEN OPTIMIZATIONS === */
+@media (min-width: 1400px) {
+    .logo-side {
+        left: calc(50vw - 660px) !important;
+    }
+    .action-side {
+        right: calc(50vw - 660px) !important;
+    }
+}
+
+@media (min-width: 1920px) {
+    .logo-side {
+        left: calc(50vw - 700px) !important;
+    }
+    .action-side {
+        right: calc(50vw - 700px) !important;
+    }
+}
+
+@media (min-width: 1401px) and (max-width: 1723px) {
+    .hero-reels-container.left-reels {
+        left: calc(21vw - 220px) !important;
+    }
+    .hero-reels-container.right-reels {
+        right: calc(21vw - 220px) !important;
+    }
+}
+
+@media (min-width: 1724px) {
+    .hero-reels-container.left-reels {
+        left: calc(50vw - 720px) !important;
+    }
+    .hero-reels-container.right-reels {
+        right: calc(50vw - 720px) !important;
+    }
+}
