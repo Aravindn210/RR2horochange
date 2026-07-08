@@ -25,12 +25,10 @@
 .location-cycler {
     position: absolute;
     top: 30px;
-    right: -110px; /* Moved slightly left from -140px */
-    /* Push it out to the right side of the video */
-    width: 150px;
+    right: 40px;
+    width: auto;
     z-index: 25;
     pointer-events: none;
-    text-align: left;
 }
 
 .loc-main {
@@ -49,11 +47,7 @@
 }
 
 /* Adjust for smaller screens */
-@media (max-width: 1200px) {
-    .location-cycler {
-        right: -80px;
-    }
-}
+
 
 @media (max-width: 1024px) {
     .video-overlay-img {
