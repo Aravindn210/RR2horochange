@@ -5977,7 +5977,16 @@ body { top: 0 !important; }
 .goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
 
 /* === LARGE SCREEN OPTIMIZATIONS === */
-@media (min-width: 1400px) {
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .logo-side {
+        left: calc(50vw - 570px) !important;
+    }
+    .action-side {
+        right: calc(50vw - 570px) !important;
+    }
+}
+
+@media (min-width: 1400px) and (max-width: 1919px) {
     .logo-side {
         left: calc(50vw - 660px) !important;
     }
@@ -5992,6 +6001,15 @@ body { top: 0 !important; }
     }
     .action-side {
         right: calc(50vw - 700px) !important;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1400px) {
+    .hero-reels-container.left-reels {
+        left: calc(17.5vw - 180px) !important;
+    }
+    .hero-reels-container.right-reels {
+        right: calc(17.5vw - 180px) !important;
     }
 }
 
