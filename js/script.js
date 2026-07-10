@@ -298,16 +298,22 @@ function getCookie(name) {
 
 function toggleLanguage() {
     let currentLang = getCookie('googtrans');
-    if (currentLang && currentLang.endsWith('/ar')) {
-        // Switch to English
-        document.cookie = "googtrans=/en/en; path=/";
-        document.cookie = "googtrans=/en/en; domain=" + window.location.hostname + "; path=/";
+    let targetLang = (currentLang && currentLang.endsWith('/ar')) ? 'en' : 'ar';
+    
+    // Switch cookie
+    document.cookie = `googtrans=/en/${targetLang}; path=/`;
+    document.cookie = `googtrans=/en/${targetLang}; domain=${window.location.hostname}; path=/`;
+
+    // Try to switch using the hidden Google Translate dropdown without reload
+    let selectField = document.querySelector('select.goog-te-combo');
+    if (selectField) {
+        selectField.value = targetLang;
+        selectField.dispatchEvent(new Event('change'));
+        updateLangUI(); // Update UI without reload
     } else {
-        // Switch to Arabic
-        document.cookie = "googtrans=/en/ar; path=/";
-        document.cookie = "googtrans=/en/ar; domain=" + window.location.hostname + "; path=/";
+        // Fallback to reload if widget is not initialized yet
+        location.reload();
     }
-    location.reload();
 }
 
 // Load Google Translate Script

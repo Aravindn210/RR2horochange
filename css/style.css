@@ -6030,3 +6030,19 @@ body { top: 0 !important; }
         right: calc(50vw - 720px) !important;
     }
 }
+
+/* --- OPTIMIZATIONS FOR PERFORMANCE & GOOGLE TRANSLATE --- */
+.hero-reel-track, #leftReelsTrack, #rightReelsTrack {
+    will-change: transform;
+}
+
+/* Hide Google Translate Banner and prevent body shift */
+body {
+    top: 0 !important;
+}
+.goog-te-banner-frame {
+    display: none !important;
+}
+#google_translate_element {
+    display: none !important;
+}

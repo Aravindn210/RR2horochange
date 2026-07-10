@@ -55,8 +55,8 @@
         @media (max-width: 1024px) {
             .location-cycler {
                 position: absolute !important;
-                top: 30px !important;
-                right: 25px !important;
+                top: 45px !important;
+                right: 40px !important;
                 left: auto !important;
                 width: 160px !important;
                 /* Fixed width stabilizes the globe icon */
@@ -94,8 +94,8 @@
         /* Scale down on smaller mobiles to prevent overlap with top-left overlay text */
         @media (max-width: 576px) {
             .location-cycler {
-                top: 20px !important;
-                right: 15px !important;
+                top: 40px !important;
+                right: 30px !important;
                 width: 140px !important;
                 /* Proportional scaling */
             }
@@ -108,8 +108,8 @@
 
         @media (max-width: 375px) {
             .location-cycler {
-                top: 15px !important;
-                right: 12px !important;
+                top: 35px !important;
+                right: 25px !important;
                 width: 130px !important;
             }
 
@@ -896,13 +896,13 @@
                                 if (leftOffset >= leftLimit) {
                                     leftOffset = 0;
                                 }
-                                leftTrack.style.transform = `translateX(${-leftOffset}px)`;
+                                leftTrack.style.transform = `translate3d(${-leftOffset}px, 0, 0)`;
                             } else {
                                 leftOffset -= 1.0;
                                 if (leftOffset <= 0) {
                                     leftOffset = leftLimit;
                                 }
-                                leftTrack.style.transform = `translateY(${-leftOffset}px)`;
+                                leftTrack.style.transform = `translate3d(0, ${-leftOffset}px, 0)`;
                             }
                         }
                         // Right Carousel scrolling (Up on desktop, Right on mobile)
@@ -912,13 +912,13 @@
                                 if (rightOffset <= 0) {
                                     rightOffset = rightLimit;
                                 }
-                                rightTrack.style.transform = `translateX(${-rightOffset}px)`;
+                                rightTrack.style.transform = `translate3d(${-rightOffset}px, 0, 0)`;
                             } else {
                                 rightOffset += 1.0;
                                 if (rightOffset >= rightLimit) {
                                     rightOffset = 0;
                                 }
-                                rightTrack.style.transform = `translateY(${-rightOffset}px)`;
+                                rightTrack.style.transform = `translate3d(0, ${-rightOffset}px, 0)`;
                             }
                         }
                     }
