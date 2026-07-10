@@ -14,209 +14,17 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css?v=1780922111682">
     <link rel="icon" type="image/png" href="assets/logo.webp">
-    <!-- Critical Preloader Style to prevent white flash -->
+    <!-- Critical style to prevent white flash on load -->
     <style>
-        html {
-            background-color: #000;
-        }
-
-        body.loading {
-            background-color: #000 !important;
-            overflow: hidden;
-            opacity: 1 !important; /* Force visible */
-        }
-
-        #preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #08080a; /* Deep bold dark black-indigo */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999999;
-            overflow: hidden;
-            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.8s;
-        }
-
-        .preloader-bg {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(0, 173, 239, 0.08) 0%, transparent 65%), #08080a;
-            z-index: 0;
-        }
-
-        .loader-wrapper {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-        }
-
-        .glow-spot {
-            position: absolute;
-            width: 260px;
-            height: 260px;
-            background: radial-gradient(circle, rgba(236, 0, 140, 0.15) 0%, transparent 70%);
-            filter: blur(45px);
-            opacity: 0.8;
-            z-index: 1;
-            animation: pulseGlowCN 3s infinite alternate ease-in-out;
-        }
-
-        @keyframes pulseGlowCN {
-            0% {
-                transform: scale(0.9);
-                opacity: 0.5;
-                background: radial-gradient(circle, rgba(0, 173, 239, 0.15) 0%, transparent 70%);
-            }
-            100% {
-                transform: scale(1.1);
-                opacity: 0.8;
-                background: radial-gradient(circle, rgba(236, 0, 140, 0.18) 0%, transparent 70%);
-            }
-        }
-
-        .eventbox-logo-container {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            max-width: 140px;
-            width: 75%;
-        }
-
-        .eventbox-logo-img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-            filter: drop-shadow(4px 4px 0px rgba(0, 173, 239, 0.85)) drop-shadow(-4px -4px 0px rgba(236, 0, 140, 0.85));
-            opacity: 0;
-            transform: scale(0.8) rotate(-10deg);
-            animation: logoRevealCN 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
-
-        @keyframes logoRevealCN {
-            to {
-                opacity: 1;
-                transform: scale(1) rotate(0deg);
-            }
-        }
-
-        /* Floating CMYK Cartoon Shapes */
-        .shapes-container {
-            position: absolute;
-            width: 220px;
-            height: 220px;
-            z-index: 3;
-            pointer-events: none;
-        }
-
-        .shape {
-            position: absolute;
-            bottom: 0;
-            opacity: 0;
-            animation: floatShape 3.8s infinite ease-in-out;
-        }
-
-        .shape-cyan {
-            background: #00adef;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .shape-magenta {
-            background: #ec008c;
-            width: 10px;
-            height: 10px;
-            transform: rotate(45deg);
-        }
-
-        .shape-yellow {
-            background: #fff200;
-            width: 14px;
-            height: 14px;
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-        }
-
-        .shape-checkers {
-            background: repeating-conic-gradient(#fff 0% 25%, #000 0% 50%) 50% / 6px 6px;
-            width: 14px;
-            height: 14px;
-            border-radius: 2px;
-        }
-
-        .shape:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 3s; }
-        .shape:nth-child(2) { left: 30%; animation-delay: 0.8s; animation-duration: 4s; }
-        .shape:nth-child(3) { left: 50%; animation-delay: 1.8s; animation-duration: 2.8s; }
-        .shape:nth-child(4) { left: 75%; animation-delay: 0.4s; animation-duration: 3.5s; }
-        .shape:nth-child(5) { left: 85%; animation-delay: 1.2s; animation-duration: 4.2s; }
-        .shape:nth-child(6) { left: 20%; animation-delay: 2.2s; animation-duration: 3.2s; }
-        .shape:nth-child(7) { left: 60%; animation-delay: 1.0s; animation-duration: 3.8s; }
-        .shape:nth-child(8) { left: 40%; animation-delay: 2.8s; animation-duration: 3.6s; }
-
-        @keyframes floatShape {
-            0% {
-                transform: translateY(60px) rotate(0deg) scale(0.5);
-                opacity: 0;
-            }
-            20% {
-                opacity: 0.8;
-            }
-            80% {
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(-110px) rotate(360deg) scale(1.2);
-                opacity: 0;
-            }
-        }
-
-        /* Transition out states */
-        #preloader.fade-out {
-            opacity: 0;
-            pointer-events: none;
-            visibility: hidden;
-            transform: scale(1.05);
-        }
-
-        #preloader.fade-out .loader-wrapper {
-            opacity: 0;
-            transform: scale(0.85);
-            filter: blur(15px);
+        html, body {
+            background-color: #000000 !important;
         }
     </style>
 </head>
 
-<body class="loading">
+<body >
 
-    <!-- Cartoon Network Premium Preloader -->
-    <div id="preloader">
-        <div class="preloader-bg"></div>
-        <div class="loader-wrapper">
-            <div class="glow-spot"></div>
-            <div class="shapes-container">
-                <div class="shape shape-cyan"></div>
-                <div class="shape shape-magenta"></div>
-                <div class="shape shape-yellow"></div>
-                <div class="shape shape-checkers"></div>
-                <div class="shape shape-cyan"></div>
-                <div class="shape shape-magenta"></div>
-                <div class="shape shape-yellow"></div>
-                <div class="shape shape-checkers"></div>
-            </div>
-            <div class="eventbox-logo-container">
-                <img src="https://static.wixstatic.com/media/3227c1_12ff4106a08c433f9df6ed6bde57a3d0~mv2_d_1772_1772_s_2.webp/v1/fill/w_109,h_113,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/3227c1_12ff4106a08c433f9df6ed6bde57a3d0~mv2_d_1772_1772_s_2.webp" alt="Cartoon Network Logo" class="eventbox-logo-img">
-            </div>
-        </div>
-    </div>
+    
 
     <div data-include="navbar.html"></div>
 
@@ -333,28 +141,7 @@
             }
         });
 
-        // Cartoon Network Preloader Logic
-        const preloader = document.getElementById('preloader');
-        function removePreloader() {
-            if (preloader && !preloader.classList.contains('fade-out')) {
-                preloader.classList.add('fade-out');
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                    document.body.classList.remove('loading');
-                }, 800); // matches the CSS transition time
-            }
-        }
         
-        // Remove preloader when page is fully loaded, but enforce a minimum presentation time (e.g. 600ms)
-        const loadTime = Date.now();
-        window.addEventListener('load', () => {
-            const elapsed = Date.now() - loadTime;
-            const delay = Math.max(600 - elapsed, 0); // Keep loader for at least 600ms
-            setTimeout(removePreloader, delay);
-        });
-        
-        // Fallback in case window load event doesn't fire or takes too long
-        setTimeout(removePreloader, 1500);
     </script>
 </body>
 
