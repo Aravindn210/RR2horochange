@@ -24,7 +24,6 @@ function compressHeroVideo() {
     }
     console.log(`\n[*] Compressing Main Hero Video: ${HERO_MOV}...`);
     console.log("[*] Target Output: H.264 MP4, 720p, web-optimized fast-start, quality CRF 28.");
-
     const cmd = `"${FFMPEG_PATH}" -y -i "${HERO_MOV}" -vf scale=1280:-2 -vcodec libx264 -crf 28 -preset fast -acodec aac -b:a 128k -movflags +faststart "${HERO_MP4}"`;
     try {
         execSync(cmd, { stdio: 'inherit' });
@@ -32,12 +31,11 @@ function compressHeroVideo() {
         const newSize = fs.statSync(HERO_MP4).size / (1024 * 1024);
         console.log(`[+] Successfully compressed main hero video!`);
         console.log(`    Original Size: ${origSize.toFixed(2)} MB`);
-        console.log(`    Optimized Size: ${newSize.toFixed(2)} MB (Reduction: ${((1 - newSize/origSize)*100).toFixed(1)}%)`);
+        console.log(`    Optimized Size: ${newSize.toFixed(2)} MB (Reduction: ${((1 - newSize / origSize) * 100).toFixed(1)}%)`);
     } catch (e) {
         console.error(`[-] Failed to compress main video: ${e.message}`);
     }
 }
-
 function compressReelThumbnails() {
     if (!fs.existsSync(NEWREEL_DIR)) {
         console.log(`[-] Reel directory '${NEWREEL_DIR}' not found. Skipping thumbnails.`);
@@ -46,15 +44,13 @@ function compressReelThumbnails() {
     console.log("\n[*] Compressing Reel Thumbnail Videos in assets/newreel...");
     const files = fs.readdirSync(NEWREEL_DIR);
     const videos = files.filter(f => f.toLowerCase().endsWith(".mp4"));
-    
+
     // Filter out temporary/already opt files if any start with "opt_"
     const targetVideos = videos.filter(f => !f.startsWith("opt_"));
-
     if (targetVideos.length === 0) {
         console.log("[-] No MP4 video files found in assets/newreel.");
         return;
     }
-
     for (const videoName of targetVideos) {
         const inputPath = path.join(NEWREEL_DIR, videoName);
         const tempOutputPath = path.join(NEWREEL_DIR, `opt_${videoName}`);
