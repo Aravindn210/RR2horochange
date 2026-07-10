@@ -266,13 +266,16 @@
                     <a href="news-7.html" class="text-decoration-none">
                         <div class="highlight-card">
                             <div class="card-img-wrapper d-flex">
-                                <img src="assets/RR2.photos/madagascar/730776660_18088679753316218_1374404990201767006_n.webp" alt="Madagascar" style="width: 50% !important;">
-                                <img src="assets/RR2.photos/ounce padel day/733868453_17896105158504598_2967063520825998373_n.webp" alt="Padel Day" style="width: 50% !important;">
+                                <img src="assets/RR2.photos/madagascar/730776660_18088679753316218_1374404990201767006_n.webp"
+                                    alt="Madagascar" style="width: 50% !important;">
+                                <img src="assets/RR2.photos/ounce padel day/733868453_17896105158504598_2967063520825998373_n.webp"
+                                    alt="Padel Day" style="width: 50% !important;">
                             </div>
                             <div class="card-body-custom">
                                 <span class="date text-aqua">JUL 2026</span>
                                 <h4 class="text-white">Double Feature: Madagascar & Sharjah Padel Day</h4>
-                                <p class="text-white opacity-75">Unveiling the successful completion of our immersive brand activation and high-stakes corporate event projects.</p>
+                                <p class="text-white opacity-75">Unveiling the successful completion of our immersive
+                                    brand activation and high-stakes corporate event projects.</p>
                             </div>
                         </div>
                     </a>
@@ -728,7 +731,7 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         if (!reelActive && mainVideo.style.display !== 'none') {
-                            mainVideo.play().catch(() => {});
+                            mainVideo.play().catch(() => { });
                         }
                     } else {
                         mainVideo.pause();
@@ -960,7 +963,7 @@
             // Use IntersectionObserver to load/play/pause thumbnail videos dynamically based on visibility
             function lazyLoadThumbnails() {
                 const thumbnails = document.querySelectorAll('.hero-reel-thumbnail video[data-src]');
-                
+
                 const observerOptions = {
                     root: null, // observe relative to browser viewport
                     rootMargin: '100px 0px 100px 0px', // preload slightly before entering viewport
@@ -989,7 +992,6 @@
                     videoObserver.observe(video);
                 });
             }
-
             // Bind to window load event
             if (document.readyState === 'complete') {
                 lazyLoadThumbnails();
