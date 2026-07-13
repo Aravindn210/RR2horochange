@@ -161,6 +161,10 @@ html {
     transform: translateY(0);
 }
 
+.social-icon:hover i {
+    color: #000 !important;
+}
+
 .social-icon i {
     font-size: 1.1rem;
     position: relative;

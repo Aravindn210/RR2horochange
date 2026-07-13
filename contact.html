@@ -12,7 +12,23 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css?v=1780922111613">
     <link rel="icon" type="image/png" href="assets/logo.webp">
+    <!-- IntlTelInput CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
     <style>
+        /* IntlTelInput Custom Dark Theme */
+        .iti { width: 100%; }
+        .iti__country-list {
+            background-color: #151515 !important;
+            color: #fff !important;
+            border: 1px solid rgba(255,255,255,0.1) !important;
+            border-radius: 0.5rem;
+        }
+        .iti__country.iti__highlight {
+            background-color: #00D1B2 !important;
+            color: #000 !important;
+        }
+        .iti__dial-code { color: inherit; }
+        
         /* Force contact icon box sizing to prevent global overrides */
         .contact-info-list .icon-box {
             font-size: 1.25rem !important;
@@ -117,7 +133,7 @@
                                 </div>
                                 <div>
                                     <h5 class="mb-1 fw-bold">Our Global HQ</h5>
-                                    <p class="mb-0 text-muted">Dubai Design District, UAE</p>
+                                    <p class="mb-0 text-muted">1 - Jebel Ali Industrial Area - Jabal Ali Industrial First - Dubai</p>
                                 </div>
                             </div>
 
@@ -128,7 +144,7 @@
                                 </div>
                                 <div>
                                     <h5 class="mb-1 fw-bold">Call Us Directly</h5>
-                                    <p class="mb-0 text-muted">+971 4 XXX XXXX</p>
+                                    <p class="mb-0 text-muted">+971 50 249 4236</p>
                                 </div>
                             </div>
 
@@ -147,10 +163,10 @@
                         <div class="social-connect mt-5">
                             <h5 class="fw-bold mb-3">Connect With Us</h5>
                             <div class="social-links d-flex gap-3">
-                                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                                <a href="https://www.instagram.com/rr2.global" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="https://www.linkedin.com/company/rr2globalco" target="_blank" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="https://www.facebook.com/rr2.global" target="_blank" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+                                <a href="#" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
                             </div>
                         </div>
                     </div>
@@ -162,59 +178,19 @@
                             <h3 class="fw-bold mb-4 text-white">Send Us a Message</h3>
                             <form id="mainContactForm">
                                 <div class="row g-3">
-                                    <div class="col-md-6">
+                                    <div class="col-12">
                                         <label
-                                            class="form-label small fw-bold text-uppercase text-white opacity-50">First
-                                            Name</label>
+                                            class="form-label small fw-bold text-uppercase text-white opacity-50">Name</label>
                                         <input type="text"
                                             class="form-control form-control-lg bg-dark text-white border-0 px-4 py-3 rounded-4"
-                                            placeholder="John" style="background: #151515 !important;">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label
-                                            class="form-label small fw-bold text-uppercase text-white opacity-50">Last
-                                            Name</label>
-                                        <input type="text"
-                                            class="form-control form-control-lg bg-dark text-white border-0 px-4 py-3 rounded-4"
-                                            placeholder="Doe" style="background: #151515 !important;">
+                                            placeholder="Your Name" style="background: #151515 !important;">
                                     </div>
                                     <div class="col-12 mt-4">
                                         <label
-                                            class="form-label small fw-bold text-uppercase text-white opacity-50">Email
-                                            Address</label>
-                                        <input type="email"
-                                            class="form-control form-control-lg bg-dark text-white border-0 px-4 py-3 rounded-4"
-                                            placeholder="john@example.com" style="background: #151515 !important;">
-                                    </div>
-                                    <div class="col-12 mt-4">
-                                        <label
-                                            class="form-label small fw-bold text-uppercase text-white opacity-50">Service
-                                            Interest</label>
-                                        <div class="dropdown custom-form-dropdown">
-                                            <button
-                                                class="btn btn-lg bg-dark text-white w-100 text-start px-4 py-3 rounded-4 dropdown-toggle border-0 d-flex align-items-center justify-content-between"
-                                                type="button" id="serviceInterestDropdown" data-bs-toggle="dropdown"
-                                                aria-expanded="false"
-                                                style="background-color: #151515 !important; font-size: 1.25rem; border: 1px solid transparent !important;">
-                                                <span id="selectedService">Exhibition Stand Design</span>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-dark w-100 border-0 p-2 rounded-4 shadow-lg"
-                                                aria-labelledby="serviceInterestDropdown"
-                                                style="background-color: #151515 !important; border: 1px solid rgba(255,255,255,0.08) !important;">
-                                                <li><a class="dropdown-item py-2 px-3 rounded-3 active" href="#"
-                                                        data-value="Exhibition Stand Design">Exhibition Stand Design</a>
-                                                </li>
-                                                <li><a class="dropdown-item py-2 px-3 rounded-3" href="#"
-                                                        data-value="Event Management">Event Management</a></li>
-                                                <li><a class="dropdown-item py-2 px-3 rounded-3" href="#"
-                                                        data-value="Interior Architecture">Interior Architecture</a>
-                                                </li>
-                                                <li><a class="dropdown-item py-2 px-3 rounded-3" href="#"
-                                                        data-value="General Inquiry">General Inquiry</a></li>
-                                            </ul>
-                                            <input type="hidden" name="service_interest" id="serviceInterestInput"
-                                                value="Exhibition Stand Design">
-                                        </div>
+                                            class="form-label small fw-bold text-uppercase text-white opacity-50">Phone Number</label>
+                                        <input type="tel" id="phone"
+                                            class="form-control form-control-lg bg-dark text-white border-0 pe-4 py-3 rounded-4"
+                                            placeholder="Your Number" style="background: #151515 !important;">
                                     </div>
                                     <div class="col-12 mt-4">
                                         <label
@@ -253,6 +229,7 @@
     <div data-include="footer.html"></div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     <script src="js/script.js"></script>
     <script src="js/include-partials.js"></script>
     <script>
@@ -272,24 +249,12 @@
             }
         });
 
-        // Custom Dropdown Selection Controller
-        document.addEventListener('DOMContentLoaded', function () {
-            const dropdownItems = document.querySelectorAll('.custom-form-dropdown .dropdown-item');
-            const selectedServiceText = document.getElementById('selectedService');
-            const serviceInput = document.getElementById('serviceInterestInput');
-
-            dropdownItems.forEach(item => {
-                item.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const val = this.getAttribute('data-value');
-                    selectedServiceText.textContent = val;
-                    serviceInput.value = val;
-
-                    // Mark as active
-                    dropdownItems.forEach(i => i.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
+        // Initialize IntlTelInput
+        const phoneInputField = document.querySelector("#phone");
+        const phoneInput = window.intlTelInput(phoneInputField, {
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+            initialCountry: "ae", // Default to UAE
+            separateDialCode: true,
         });
     </script>
 </body>
