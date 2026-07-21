@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Innovations | RR2Global News</title>
+    <meta name="description"
+        content="RR2Global News - Latest Innovations and Updates.">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=1780922111635">
+    <link rel="icon" type="image/png" href="assets/logo.webp">
+    <!-- Critical style to prevent white flash on load -->
+    <style>
+        html, body {
+            background-color: #000000 !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div data-include="navbar.html"></div>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="header-overlay"></div>
+        <div class="container text-center text-white">
+            <span class="badge bg-primary mb-3">AUG 2026</span>
+            <h1 class="display-1 fw-bold">Defining the space <br><span class="text-gradient-hero">through detail</span></h1>
+            <p class="lead mt-3">Primal Fitness Environment Curation</p>
+        </div>
+    </header>
+
+    <!-- Detail Section -->
+    <section class="py-5">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-8 mx-auto" data-aos="fade-up">
+                    <div class="position-relative mb-5 rounded-5 overflow-hidden shadow-lg d-flex" style="height: 500px;">
+                        <img src="assets/news/748287975_17898415098504598_7150772986448205274_n.webp" alt="Primal Fitness" class="w-100 h-100 object-fit-cover">
+                    </div>
+
+                    <h2 class="display-4 fw-bold mb-4">Primal Fitness</h2>
+                    <p class="lead text-white mb-4">Defining the space through detail. At Primal Fitness, we curated an environment of purpose, integrating custom furniture, sharp signage, and precision lighting to elevate the athlete's experience.</p>
+
+                    <h4 class="text-primary fw-bold mt-5 mb-3">Elevating the Athlete's Experience</h4>
+                    <p>Every element in Primal Fitness was meticulously chosen to foster an atmosphere of focus and determination. From the moment you step in, the environment speaks to the dedication of the athletes it serves.</p>
+
+                    <blockquote class="my-5 p-4 border-start border-primary border-4 bg-glass-bg rounded-3">
+                        <p class="h4 italic mb-0">"We curated an environment of purpose, integrating custom furniture, sharp signage, and precision lighting to elevate the athlete's experience."</p>
+                    </blockquote>
+
+                    <p>We look forward to sharing more details about this incredible space soon!</p>
+
+                    <h4 class="text-primary fw-bold mt-5 mb-3">Visual Highlights</h4>
+                    <div class="row g-4 mt-2">
+                        <div class="col-md-6" data-aos="fade-right">
+                            <img src="assets/news/741496166_17898415143504598_9007293472193341789_n.webp" alt="Primal Fitness Highlight 1" class="img-fluid rounded-4 shadow-lg w-100 object-fit-cover" style="height: 280px;">
+                        </div>
+                        <div class="col-md-6" data-aos="fade-left">
+                            <img src="assets/news/745342115_17898415278504598_7628283795862869786_n.webp" alt="Primal Fitness Highlight 2" class="img-fluid rounded-4 shadow-lg w-100 object-fit-cover" style="height: 280px;">
+                        </div>
+                        <div class="col-md-6" data-aos="fade-right" data-aos-delay="100">
+                            <img src="assets/news/748331085_17898415290504598_1719017647713416442_n.webp" alt="Primal Fitness Highlight 3" class="img-fluid rounded-4 shadow-lg w-100 object-fit-cover" style="height: 280px;">
+                        </div>
+                        <div class="col-md-6" data-aos="fade-left" data-aos-delay="100">
+                            <img src="assets/news/748572871_17898415116504598_481130504120433400_n.webp" alt="Primal Fitness Highlight 4" class="img-fluid rounded-4 shadow-lg w-100 object-fit-cover" style="height: 280px;">
+                        </div>
+                        <div class="col-md-6" data-aos="fade-right" data-aos-delay="200">
+                            <img src="assets/news/748678686_17898415203504598_4343155498320691023_n.webp" alt="Primal Fitness Highlight 5" class="img-fluid rounded-4 shadow-lg w-100 object-fit-cover" style="height: 280px;">
+                        </div>
+                        <div class="col-md-6" data-aos="fade-left" data-aos-delay="200">
+                            <img src="assets/news/748931875_17898415266504598_1062965877495507443_n.webp" alt="Primal Fitness Highlight 6" class="img-fluid rounded-4 shadow-lg w-100 object-fit-cover" style="height: 280px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="news.html" class="btn btn-outline-light rounded-pill px-5">BACK TO NEWS</a>
+            </div>
+        </div>
+    </section>
+
+    <div data-include="footer.html"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/include-partials.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true, offset: 100 });
+        window.addEventListener('scroll', function () {
+            const nav = document.querySelector('.navbar');
+            if (nav) {
+                if (window.scrollY > 50) nav.classList.add('navbar-scrolled');
+                else nav.classList.remove('navbar-scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>
