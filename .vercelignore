@@ -1,0 +1,16 @@
+*.psd
+*.psb
+*.MOV
+*.HEIC
+bin/
+scratch/
+temp_site_download/
+convert_to_webp.js
+download_ffmpeg.js
+optimize_images.js
+optimize_videos.js
+optimize_videos.py
+update_references.js
+image.png
+neither zhould you-01.png
+*.log

@@ -7,3 +7,6 @@ Thumbs.db
 *.psb
 bin/
 temp_ffmpeg*
+dist_deploy/
+*.zip
+image.png
