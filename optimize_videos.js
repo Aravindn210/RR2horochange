@@ -59,7 +59,7 @@ function compressReelThumbnails() {
         console.log(`\n[*] Compressing thumbnail: ${videoName} (${origSizeMB.toFixed(2)} MB)...`);
         console.log("[*] Target Output: H.264 MP4, 360p, low framerate (24 fps), quality CRF 30.");
 
-        const cmd = `"${FFMPEG_PATH}" -y -i "${inputPath}" -vf "scale=360:-2,fps=24" -vcodec libx264 -crf 30 -preset fast -an -movflags +faststart "${tempOutputPath}"`;
+        const cmd = `"${FFMPEG_PATH}" -y -i "${inputPath}" -vf "scale=360:-2,fps=24" -vcodec libx264 -crf 30 -preset fast -acodec aac -b:a 64k -movflags +faststart "${tempOutputPath}"`;
         try {
             execSync(cmd, { stdio: 'inherit' });
             // Replace original file with the compressed one

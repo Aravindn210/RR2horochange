@@ -145,7 +145,8 @@ def compress_thumbnail(video_path: Path, args: argparse.Namespace, logger: loggi
         "-vcodec", "libx264",
         "-crf", str(args.thumb_crf),
         "-preset", "fast",
-        "-an",  # strip audio
+        "-acodec", "aac",
+        "-b:a", "64k",
         "-movflags", "+faststart",
     ]
     success = compress_video(video_path, temp_output, ffmpeg_opts, args.dry_run, logger)
