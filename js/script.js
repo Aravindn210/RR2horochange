@@ -301,13 +301,28 @@ function toggleLanguage() {
     let targetLang = (currentLang && currentLang.endsWith('/ar')) ? 'en' : 'ar';
     
     // Switch cookie
-    document.cookie = `googtrans=/en/${targetLang}; path=/`;
-    document.cookie = `googtrans=/en/${targetLang}; domain=${window.location.hostname}; path=/`;
+    if (targetLang === 'en') {
+        // Clear the googtrans cookie to restore default behavior on reload / subsequent pages
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=${window.location.hostname}; path=/;`;
+        document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=.${window.location.hostname}; path=/;`;
+    } else {
+        document.cookie = `googtrans=/en/${targetLang}; path=/`;
+        document.cookie = `googtrans=/en/${targetLang}; domain=${window.location.hostname}; path=/`;
+        document.cookie = `googtrans=/en/${targetLang}; domain=.${window.location.hostname}; path=/`;
+    }
 
     // Try to switch using the hidden Google Translate dropdown without reload
     let selectField = document.querySelector('select.goog-te-combo');
     if (selectField) {
-        selectField.value = targetLang;
+        // Check if targetLang option exists in the select dropdown
+        let optionExists = Array.from(selectField.options).some(opt => opt.value === targetLang);
+        if (optionExists) {
+            selectField.value = targetLang;
+        } else if (targetLang === 'en') {
+            // For English (source language), the dropdown uses empty string "" to restore the original language
+            selectField.value = '';
+        }
         selectField.dispatchEvent(new Event('change'));
         updateLangUI(); // Update UI without reload
     } else {
